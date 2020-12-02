@@ -4,11 +4,12 @@
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
+#include "kmint/pigisland/state/context.hpp"
 
 namespace kmint {
 namespace pigisland {
 
-class shark : public play::map_bound_actor {
+class shark : public play::map_bound_actor, public context {
 public:
   shark(map::map_graph &g, map::map_node &initial_node);
   // wordt elke game tick aangeroepen

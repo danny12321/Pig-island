@@ -47,9 +47,13 @@ KWWWWWWWWWWWWWWWWWWWWWWWWLLLLLLL
 }
 
 map::map map() { return map::read_map(graph_description); }
+
 graphics::image shark_image() { return graphics::image{"resources/shark.png"}; }
+
 graphics::image pig_image() { return graphics::image{"resources/pig.png"}; }
+
 graphics::image boat_image() { return graphics::image{"resources/boat.png"}; }
+
 std::vector<math::vector2d> random_pig_locations(std::size_t n) {
   // from 0x2 to 13x17  = 195
   // from 13x0 to 28x9  = 135
@@ -70,7 +74,9 @@ std::vector<math::vector2d> random_pig_locations(std::size_t n) {
       math::rectangle{math::vector2d{0.1f, 2}, math::size{13, 15}},
       math::rectangle{math::vector2d{13.f, 0.1f}, math::size{15, 9}},
       math::rectangle{math::vector2d{20, 9}, math::size{12, 10}},
-      math::rectangle{math::vector2d{6, 17}, math::size{17, 6}}};
+      math::rectangle{math::vector2d{6, 17}, math::size{17, 6}}
+  };
+
   auto to_index = [](int i) -> std::size_t {
     if (i < 195)
       return 0;
