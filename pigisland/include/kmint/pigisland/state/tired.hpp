@@ -7,12 +7,15 @@
 
 #include "kmint/pigisland/state/state.hpp"
 
-class tired : public state {
-public:
-    tired(class context *context) : state(context) {};
+namespace kmint {
+namespace pigisland {
 
-    void execute() override;
+    class tired : public state {
+    public:
+        tired(class context *context) : state(context) {};
 
-};
+        void execute(delta_time dt) override;
 
+    };
+}}
 #endif //PIG_ISLAND_TIRED_HPP

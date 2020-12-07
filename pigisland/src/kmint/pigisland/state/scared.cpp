@@ -4,6 +4,10 @@
 
 #include "kmint/pigisland/state/scared.hpp"
 
-void scared::execute() {
+namespace kmint {
+namespace pigisland {
 
-}
+    void scared::execute(delta_time dt) {
+
+    }
+}}

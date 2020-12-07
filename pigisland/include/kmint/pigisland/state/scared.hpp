@@ -7,13 +7,16 @@
 
 #include "kmint/pigisland/state/state.hpp"
 
-class scared : public state {
-public:
-    scared(class context* context) : state(context) {};
+namespace kmint {
+namespace pigisland {
 
-    void execute() override;
+    class scared : public state {
+    public:
+        scared(class context *context) : state(context) {};
 
-};
+        void execute(delta_time dt) override;
 
+    };
+}}
 
 #endif //PIG_ISLAND_SCARED_HPP

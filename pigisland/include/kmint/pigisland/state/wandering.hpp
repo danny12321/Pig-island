@@ -8,12 +8,15 @@
 #include "kmint/pigisland/state/state.hpp"
 //#include "kmint/pigisland/state/context.hpp"
 
-class wandering : public state {
-public:
-    wandering(class context* context) : state(context) {};
+namespace kmint {
+namespace pigisland {
+    class wandering : public state {
+    public:
+        wandering(class context *context) : state(context) {};
 
-    void execute() override;
+        void execute(delta_time dt) override;
 
-};
+    };
+}}
 
 #endif //PIG_ISLAND_WANDERING_HPP

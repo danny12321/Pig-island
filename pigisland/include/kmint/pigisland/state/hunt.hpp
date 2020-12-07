@@ -7,11 +7,14 @@
 
 #include "kmint/pigisland/state/state.hpp"
 
-class hunt : public state {
-public:
-    hunt(class context* context) : state(context) {};
-    void execute() override;
-};
+namespace kmint {
+namespace pigisland {
+    class hunt : public state {
+    public:
+        hunt(class context *context) : state(context) {};
 
+        void execute(delta_time dt) override;
+    };
+}}
 
 #endif //PIG_ISLAND_HUNT_HPP

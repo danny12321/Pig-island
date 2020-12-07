@@ -4,6 +4,10 @@
 
 #include "kmint/pigisland/state/tired.hpp"
 
-void tired::execute() {
 
-}
+namespace kmint {
+namespace pigisland {
+    void tired::execute(delta_time dt) {
+
+    }
+}}

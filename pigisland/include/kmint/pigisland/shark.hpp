@@ -9,7 +9,7 @@
 namespace kmint {
 namespace pigisland {
 
-class shark : public play::map_bound_actor, public context {
+class shark : public context {
 public:
   shark(map::map_graph &g, map::map_node &initial_node);
   // wordt elke game tick aangeroepen
@@ -27,10 +27,7 @@ public:
   scalar perception_range() const override { return 200.f; }
 
 private:
-  // hoeveel tijd is verstreken sinds de laatste beweging
-  delta_time t_passed_{};
-  // weet hoe de koe getekend moet worden
-  play::image_drawable drawable_;
+    play::image_drawable drawable_;
 };
 
 } // namespace pigisland

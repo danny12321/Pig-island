@@ -5,14 +5,25 @@
 #ifndef PIG_ISLAND_CONTEXT_HPP
 #define PIG_ISLAND_CONTEXT_HPP
 
-class state;
-class context {
-public:
-    context() {};
-    void setState(state* newState) { activeState = newState; }
+#include "kmint/map/map.hpp"
+#include "kmint/play.hpp"
+#include "kmint/primitives.hpp"
 
-protected:
-    state* activeState;
-};
+namespace kmint {
+namespace pigisland {
 
+    class state;
+
+    class context : public play::map_bound_actor {
+    public:
+        context(map::map_graph &g, map::map_node &initial_node) : play::map_bound_actor{initial_node} {};
+
+        void setState(state *newState) { activeState = newState; }
+
+        delta_time t_passed_{};
+    protected:
+        state *activeState;
+    };
+}
+}
 #endif //PIG_ISLAND_CONTEXT_HPP

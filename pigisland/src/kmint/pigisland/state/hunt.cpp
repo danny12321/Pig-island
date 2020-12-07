@@ -4,6 +4,9 @@
 
 #include "kmint/pigisland/state/hunt.hpp"
 
-void hunt::execute() {
+namespace kmint {
+namespace pigisland {
+    void hunt::execute(delta_time dt) {
 
-}
+    }
+}}
