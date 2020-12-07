@@ -2,7 +2,7 @@
 // Created by Thierry on 2-12-2020.
 //
 
-#include <kmint/pigisland/state/hunt.hpp>
+#include <kmint/pigisland/state/shark_wandering.hpp>
 #include "kmint/pigisland/state/scared.hpp"
 
 namespace kmint {
@@ -13,7 +13,7 @@ namespace pigisland {
         steps++;
 
         if(steps >= walkingDistance) {
-            context->setState(new hunt(context));
+            context->setState(new shark_wandering(context));
         }
     }
 }}

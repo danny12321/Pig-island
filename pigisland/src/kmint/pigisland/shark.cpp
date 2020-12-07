@@ -6,6 +6,8 @@
 #include <iostream>
 #include <kmint/pigisland/state/tired.hpp>
 #include <kmint/pigisland/state/scared.hpp>
+#include <kmint/pigisland/state/hunt.hpp>
+#include <kmint/pigisland/state/shark_wandering.hpp>
 
 namespace kmint {
 namespace pigisland {
@@ -13,7 +15,7 @@ shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, initia
                                                      graphics::image {
                                                          shark_image()}} {
 
-    setState(new scared(this));
+    setState(new shark_wandering(this));
 }
 
 void shark::act(delta_time dt) {
@@ -22,14 +24,6 @@ void shark::act(delta_time dt) {
     // Do state
     activeState->execute(dt);
     t_passed_ = from_seconds(0);
-    // pick random edge
-
-  }
-  // laat ook even zien welke varkentjes hij ruikt
-  for (auto i = begin_perceived(); i != end_perceived(); ++i) {
-    auto const &a = *i;
-    std::cout << "Smelled a pig at " << a.location().x() << ", "
-              << a.location().y() << "\n";
   }
 }
 
