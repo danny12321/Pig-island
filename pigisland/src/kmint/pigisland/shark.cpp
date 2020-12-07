@@ -4,6 +4,7 @@
 #include "kmint/random.hpp"
 #include "kmint/pigisland/state/wandering.hpp"
 #include <iostream>
+#include <kmint/pigisland/state/tired.hpp>
 
 namespace kmint {
 namespace pigisland {
@@ -11,7 +12,7 @@ shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, initia
                                                      graphics::image {
                                                          shark_image()}} {
 
-    setState(new wandering(this));
+    setState(new tired(this));
 }
 
 void shark::act(delta_time dt) {

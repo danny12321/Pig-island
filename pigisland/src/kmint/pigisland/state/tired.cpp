@@ -8,6 +8,9 @@
 namespace kmint {
 namespace pigisland {
     void tired::execute(delta_time dt) {
-
+        auto nextNode = nav->getNextNode();
+        if (nextNode != nullptr) {
+            context->node(*nextNode);
+        }
     }
 }}

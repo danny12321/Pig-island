@@ -16,11 +16,13 @@ namespace pigisland {
 
     class context : public play::map_bound_actor {
     public:
-        context(map::map_graph &g, map::map_node &initial_node) : play::map_bound_actor{initial_node} {};
+        context(map::map_graph &g, map::map_node &initial_node) : play::map_bound_actor{initial_node}, graph(g) {};
 
         void setState(state *newState) { activeState = newState; }
 
         delta_time t_passed_{};
+        map::map_graph &graph;
+
     protected:
         state *activeState;
     };
