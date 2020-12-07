@@ -5,6 +5,7 @@
 #include "kmint/pigisland/state/wandering.hpp"
 #include <iostream>
 #include <kmint/pigisland/state/tired.hpp>
+#include <kmint/pigisland/state/scared.hpp>
 
 namespace kmint {
 namespace pigisland {
@@ -12,7 +13,7 @@ shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, initia
                                                      graphics::image {
                                                          shark_image()}} {
 
-    setState(new tired(this));
+    setState(new scared(this));
 }
 
 void shark::act(delta_time dt) {

@@ -5,17 +5,20 @@
 #ifndef PIG_ISLAND_SCARED_HPP
 #define PIG_ISLAND_SCARED_HPP
 
-#include "kmint/pigisland/state/state.hpp"
+#include "kmint/pigisland/state/wandering.hpp"
 
 namespace kmint {
 namespace pigisland {
 
-    class scared : public state {
+    class scared : public wandering {
     public:
-        scared(class context *context) : state(context) {};
+        scared(class context *context) : wandering(context) {};
 
         void execute(delta_time dt) override;
 
+    private:
+        int steps = 0;
+        const int walkingDistance = 10;
     };
 }}
 
