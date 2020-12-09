@@ -3,6 +3,7 @@
 //
 
 #include <kmint/pigisland/state/hunt.hpp>
+#include <kmint/pigisland/pig.hpp>
 #include "kmint/pigisland/state/shark_wandering.hpp"
 
 namespace kmint {
@@ -12,8 +13,10 @@ namespace pigisland {
 
         for (auto i = context->begin_perceived(); i != context->end_perceived(); ++i) {
             auto &a = *i;
-            context->setState(new hunt(context, a));
-            break;
+            if(typeid(a).name() == typeid(kmint::pigisland::pig).name()) {
+                context->setState(new hunt(context, a));
+                break;
+            }
         }
     }
 }}
