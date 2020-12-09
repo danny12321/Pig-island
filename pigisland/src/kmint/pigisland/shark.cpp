@@ -1,20 +1,16 @@
 #include "kmint/pigisland/shark.hpp"
-#include "kmint/pigisland/node_algorithm.hpp"
 #include "kmint/pigisland/resources.hpp"
-#include "kmint/random.hpp"
 #include "kmint/pigisland/state/wandering.hpp"
-#include <iostream>
 #include <kmint/pigisland/state/tired.hpp>
 #include <kmint/pigisland/state/scared.hpp>
-#include <kmint/pigisland/state/hunt.hpp>
 #include <kmint/pigisland/state/shark_wandering.hpp>
 #include <kmint/pigisland/boat.hpp>
 
 namespace kmint {
     namespace pigisland {
         shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, g[69]), drawable_{*this,
-                                                                                                           graphics::image{
-                                                                                                                   shark_image()}} {
+                                                                                                    graphics::image{
+                                                                                                            shark_image()}} {
             setState(new shark_wandering(this));
         }
 
@@ -28,18 +24,16 @@ namespace kmint {
 
                 if (stepsMade == 100) {
                     setState(new tired(this));
-                }
+                } else {
+                    bool boatInSight = std::any_of(begin_perceived(), end_perceived(), [this](const auto &a) {
+                        return typeid(a).name() == typeid(kmint::pigisland::boat).name() &&
+                               math::distance(a.location(), this->location()) <= 50;
+                    });
 
-                for (auto i = begin_perceived(); i != end_perceived(); ++i) {
-                    auto &a = *i;
-
-                    if(typeid(a).name() == typeid(kmint::pigisland::boat).name()) {
-                        if(math::distance(a.location(), this->location()) <= 50) {
-                            setState(new scared(this));
-                        }
+                    if (boatInSight) {
+                        setState(new scared(this));
                     }
                 }
-
             }
         }
 
