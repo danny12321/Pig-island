@@ -26,6 +26,8 @@ public:
   // andere actors kan waarnemen.
   scalar perception_range() const override { return 200.f; }
 
+    void setTint(graphics::color color) override;
+
 private:
     play::image_drawable drawable_;
 };

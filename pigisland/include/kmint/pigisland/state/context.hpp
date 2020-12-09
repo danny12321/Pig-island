@@ -22,6 +22,8 @@ namespace pigisland {
             activeState = newState;
         }
 
+        virtual void setTint(graphics::color color) = 0;
+
         delta_time t_passed_{};
         map::map_graph &graph;
         int stepsMade = 0;

@@ -3,6 +3,7 @@
 #include "kmint/pigisland/resources.hpp"
 #include "kmint/pigisland/state/wandering.hpp"
 #include "kmint/random.hpp"
+
 namespace kmint {
 namespace pigisland {
   boat::boat(map::map_graph& g, map::map_node& initial_node) : context(g, initial_node),
@@ -18,6 +19,10 @@ namespace pigisland {
         t_passed_ = from_seconds(0);
     }
   }
+
+    void boat::setTint(graphics::color color) {
+        drawable_.set_tint(color);
+    }
 
 } // namespace pigisland
 } // namespace kmint

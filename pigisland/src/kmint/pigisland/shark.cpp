@@ -14,7 +14,6 @@ namespace pigisland {
 shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, initial_node), drawable_{*this,
                                                      graphics::image {
                                                          shark_image()}} {
-
     setState(new shark_wandering(this));
 }
 
@@ -31,6 +30,10 @@ void shark::act(delta_time dt) {
     }
   }
 }
+
+    void shark::setTint(graphics::color color) {
+        drawable_.set_tint(color);
+    }
 
 } // namespace pigisland
 } // namespace kmint

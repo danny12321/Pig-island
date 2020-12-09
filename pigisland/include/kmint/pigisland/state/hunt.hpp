@@ -13,6 +13,7 @@ namespace pigisland {
     class hunt : public state {
     public:
         hunt(pigisland::context *context, play::actor &target) : state(context), target(target) {
+            context->setTint(graphics::colors::red);
             auto targetLocation = getClosestNode(target.location());
             tomtom = std::make_unique<navigation>(&context->graph, &context->node(), targetLocation);
         };

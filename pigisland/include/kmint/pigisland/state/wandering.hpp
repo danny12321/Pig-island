@@ -12,7 +12,9 @@ namespace kmint {
 namespace pigisland {
     class wandering : public state {
     public:
-        wandering(class context *context) : state(context) {};
+        wandering(class context *context) : state(context) {
+            context->setTint(graphics::colors::green);
+        };
 
         void execute(delta_time dt) override;
 

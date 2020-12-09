@@ -12,7 +12,9 @@ namespace pigisland {
 
     class scared : public wandering {
     public:
-        scared(class context *context) : wandering(context) {};
+        scared(class context *context) : wandering(context) {
+            context->setTint(graphics::colors::black);
+        };
 
         void execute(delta_time dt) override;
 

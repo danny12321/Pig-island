@@ -15,6 +15,7 @@ namespace pigisland {
     class tired : public state {
     public:
         tired(class context *context) : state(context) {
+            context->setTint(graphics::colors::white);
             nav = std::make_unique<navigation>(&context->graph, &context->node(), &context->graph[restingPlaceId]);
         };
 
