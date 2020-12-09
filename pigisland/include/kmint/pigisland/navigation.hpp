@@ -20,10 +20,11 @@ namespace pigisland {
     public:
         navigation(kmint::map::map_graph *graph, kmint::map::map_node *start, kmint::map::map_node *target);
 
-
         kmint::map::map_node *getNextNode();
 
         void setTarget(kmint::map::map_node *start, kmint::map::map_node *target);
+
+        kmint::map::map_node *getTarget();
 
     private:
         kmint::map::map_node *start;

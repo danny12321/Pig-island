@@ -110,4 +110,8 @@ namespace pigisland {
 
         route = realPath;
     }
+
+    kmint::map::map_node *navigation::getTarget() {
+        return target;
+    }
 }}

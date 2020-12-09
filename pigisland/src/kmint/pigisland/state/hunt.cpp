@@ -2,14 +2,26 @@
 // Created by Thierry on 2-12-2020.
 //
 
+#include <kmint/pigisland/state/shark_wandering.hpp>
 #include "kmint/pigisland/state/hunt.hpp"
 
 namespace kmint {
 namespace pigisland {
     void hunt::execute(delta_time dt) {
+        auto targetClosedNode = getClosestNode(target.location());
+
+        if(tomtom->getTarget() != targetClosedNode) {
+            tomtom->setTarget(&context->node(), targetClosedNode);
+        }
+
         auto nextNode = tomtom->getNextNode();
         if(nextNode != nullptr) {
             context->node(*nextNode);
+        }
+
+        if(context->node().node_id() == targetClosedNode->node_id()) {
+            target.remove();
+            context->setState(new shark_wandering(context));
         }
     }
 

@@ -12,14 +12,15 @@ namespace kmint {
 namespace pigisland {
     class hunt : public state {
     public:
-        hunt(pigisland::context *context, play::actor &actor) : state(context) {
-            auto target = getClosestNode(actor.location());
-            tomtom = std::make_unique<navigation>(&context->graph, &context->node(), target);
+        hunt(pigisland::context *context, play::actor &target) : state(context), target(target) {
+            auto targetLocation = getClosestNode(target.location());
+            tomtom = std::make_unique<navigation>(&context->graph, &context->node(), targetLocation);
         };
 
         void execute(delta_time dt) override;
 
     private:
+        play::actor &target;
         std::unique_ptr<navigation> tomtom;
         map::map_node *getClosestNode(math::vector2d position);
     };

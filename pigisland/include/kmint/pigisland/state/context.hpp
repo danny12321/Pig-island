@@ -18,10 +18,13 @@ namespace pigisland {
     public:
         context(map::map_graph &g, map::map_node &initial_node) : play::map_bound_actor{initial_node}, graph(g) {};
 
-        void setState(state *newState) { activeState = newState; }
+        void setState(state *newState) {
+            activeState = newState;
+        }
 
         delta_time t_passed_{};
         map::map_graph &graph;
+        int stepsMade = 0;
 
     protected:
         state *activeState;

@@ -23,7 +23,12 @@ void shark::act(delta_time dt) {
   if (to_seconds(t_passed_) >= 1) {
     // Do state
     activeState->execute(dt);
+    stepsMade++;
     t_passed_ = from_seconds(0);
+
+    if(stepsMade == 100) {
+        setState(new tired(this));
+    }
   }
 }
 
