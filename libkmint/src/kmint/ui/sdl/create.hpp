@@ -6,14 +6,14 @@
 
 namespace kmint::ui::sdl {
 
-template <typename F, typename... Args>
-decltype(auto) create(F &&creator, Args &&... args) {
-  auto r = creator(std::forward<Args>(args)...);
-  if (r == nullptr) {
-    throw initialization_error{SDL_GetError()};
-  }
-  return r;
-}
+    template<typename F, typename... Args>
+    decltype(auto) create(F &&creator, Args &&... args) {
+        auto r = creator(std::forward<Args>(args)...);
+        if (r == nullptr) {
+            throw initialization_error{SDL_GetError()};
+        }
+        return r;
+    }
 
 } // namespace kmint::ui::sdl
 

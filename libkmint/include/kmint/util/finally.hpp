@@ -6,20 +6,26 @@
 
 namespace kmint {
 
-template <typename F> class finally {
-public:
-  finally(F &&f) : f_{std::forward<F>(f)} {}
-  ~finally() { f_(); }
-  finally(finally const &) = delete;
-  finally(finally &&) = delete;
-  finally &operator=(finally const &) = delete;
-  finally &operator=(finally &&) = delete;
+    template<typename F>
+    class finally {
+    public:
+        finally(F &&f) : f_{std::forward<F>(f)} {}
 
-private:
-  F f_;
-};
+        ~finally() { f_(); }
 
-template <typename F> finally(F &&f)->finally<std::decay_t<F>>;
+        finally(finally const &) = delete;
+
+        finally(finally &&) = delete;
+
+        finally &operator=(finally const &) = delete;
+
+        finally &operator=(finally &&) = delete;
+
+    private:
+        F f_;
+    };
+
+    template<typename F> finally(F &&f)->finally<std::decay_t<F>>;
 
 } // namespace kmint
 

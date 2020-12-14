@@ -10,13 +10,14 @@ namespace kmint {
 //! \requires high > low
 //! \returns a random integer that is larger than or equal to low and less than
 //! high
-int random_int(int low, int high);
+    int random_int(int low, int high);
+
 //!
 //! Returns a random scalar in the interval [low, high).
 //! \requires high > low
 //! \returns a random scalar that is larger than or equal to low and less than
 //! high.
-scalar random_scalar(scalar low, scalar high);
+    scalar random_scalar(scalar low, scalar high);
 
 } // namespace kmint
 #endif

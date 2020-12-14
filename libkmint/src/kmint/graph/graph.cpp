@@ -3,18 +3,19 @@
 #include <ostream>
 
 namespace kmint {
-namespace graph {
+    namespace graph {
 
-std::ostream &operator<<(std::ostream &os, no_node_info /*unused*/) {
-  return os;
-}
-std::istream &operator>>(std::istream &is, no_node_info & /*unused*/) {
-  return is;
-}
+        std::ostream &operator<<(std::ostream &os, no_node_info /*unused*/) {
+            return os;
+        }
 
-graph read_graph(std::istream &is) {
-  return read_basic_graph<no_node_info>(is);
-}
+        std::istream &operator>>(std::istream &is, no_node_info & /*unused*/) {
+            return is;
+        }
 
-} // namespace graph
+        graph read_graph(std::istream &is) {
+            return read_basic_graph<no_node_info>(is);
+        }
+
+    } // namespace graph
 } // namespace kmint

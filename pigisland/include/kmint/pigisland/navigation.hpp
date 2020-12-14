@@ -8,32 +8,33 @@
 #include <kmint/map/map.hpp>
 
 namespace kmint {
-namespace pigisland {
-    struct shortest_road {
-        kmint::map::map_node *from = nullptr;
-        kmint::map::map_node *current;
-        float distance = INT16_MAX;
-        float estimatedDistance = INT16_MAX;
-    };
+    namespace pigisland {
+        struct shortest_road {
+            kmint::map::map_node *from = nullptr;
+            kmint::map::map_node *current;
+            float distance = INT16_MAX;
+            float estimatedDistance = INT16_MAX;
+        };
 
-    class navigation {
-    public:
-        navigation(kmint::map::map_graph *graph, kmint::map::map_node *start, kmint::map::map_node *target);
+        class navigation {
+        public:
+            navigation(kmint::map::map_graph *graph, kmint::map::map_node *start, kmint::map::map_node *target);
 
-        kmint::map::map_node *getNextNode();
+            kmint::map::map_node *getNextNode();
 
-        void setTarget(kmint::map::map_node *start, kmint::map::map_node *target);
+            void setTarget(kmint::map::map_node *start, kmint::map::map_node *target);
 
-        kmint::map::map_node *getTarget();
+            kmint::map::map_node *getTarget();
 
-    private:
-        kmint::map::map_node *start;
-        kmint::map::map_node *target;
-        kmint::map::map_graph *graph;
-        std::vector<kmint::map::map_node*> route;
+        private:
+            kmint::map::map_node *start;
+            kmint::map::map_node *target;
+            kmint::map::map_graph *graph;
+            std::vector<kmint::map::map_node *> route;
 
-        void calculateRoute();
-    };
-}}
+            void calculateRoute();
+        };
+    }
+}
 
 #endif //PIGISLAND_NAVIGATION_HPP

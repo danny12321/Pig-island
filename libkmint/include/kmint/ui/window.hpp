@@ -12,64 +12,87 @@
 
 namespace kmint::ui {
 
-class window;
-class texture;
+    class window;
 
-class frame {
-public:
-  void render_color(graphics::color const &color) noexcept;
-  graphics::color render_color() const noexcept;
-  void draw_image(math::vector2d center, graphics::image const &img);
-  void draw_image(math::vector2d center, graphics::image const &img,
-                  graphics::color tint);
-  void draw_rectangle(math::vector2d center, math::size size,
-                      graphics::color const &color);
-  void draw_rectangle(math::rectangle rect, graphics::color const &color);
-  void draw_rectangle_outline(math::rectangle rect,
-                              graphics::color const &color);
-  void draw_line(math::vector2d from, math::vector2d to);
-  void draw_line(math::line_segment s);
-  frame(frame const &) = delete;
-  frame &operator=(frame const &) = delete;
-  frame(frame &&other) noexcept;
-  frame &operator=(frame &&other) noexcept;
-  ~frame();
+    class texture;
 
-  friend class window;
+    class frame {
+    public:
+        void render_color(graphics::color const &color) noexcept;
 
-private:
-  explicit frame(window &w);
-  struct impl;
-  std::unique_ptr<impl> pimpl_;
-};
+        graphics::color render_color() const noexcept;
 
-class window {
-public:
-  window(window const & /*other*/) = delete;
-  window &operator=(window const & /*other*/) = delete;
-  window(window &&other) noexcept;
-  window &operator=(window &&other) noexcept;
-  ~window();
+        void draw_image(math::vector2d center, graphics::image const &img);
 
-  class frame frame() {
-    return kmint::ui::frame{*this};
-  }
+        void draw_image(math::vector2d center, graphics::image const &img,
+                        graphics::color tint);
 
-  friend class app;
-  friend class frame;
+        void draw_rectangle(math::vector2d center, math::size size,
+                            graphics::color const &color);
 
-private:
-  window(math::isize size, char const *title, scalar scale);
-  class impl;
-  std::unique_ptr<impl> pimpl_;
-};
+        void draw_rectangle(math::rectangle rect, graphics::color const &color);
 
-template <typename InputIt> void render(window &w, InputIt begin, InputIt end) {
-  frame f{w.frame()};
-  for (auto i = begin; i != end; ++i) {
-    i->draw(f);
-  }
-}
+        void draw_rectangle_outline(math::rectangle rect,
+                                    graphics::color const &color);
+
+        void draw_line(math::vector2d from, math::vector2d to);
+
+        void draw_line(math::line_segment s);
+
+        frame(frame const &) = delete;
+
+        frame &operator=(frame const &) = delete;
+
+        frame(frame &&other) noexcept;
+
+        frame &operator=(frame &&other) noexcept;
+
+        ~frame();
+
+        friend class window;
+
+    private:
+        explicit frame(window &w);
+
+        struct impl;
+        std::unique_ptr<impl> pimpl_;
+    };
+
+    class window {
+    public:
+        window(window const & /*other*/) = delete;
+
+        window &operator=(window const & /*other*/) = delete;
+
+        window(window &&other) noexcept;
+
+        window &operator=(window &&other) noexcept;
+
+        ~window();
+
+        class frame frame() {
+            return kmint::ui::frame{*this};
+        }
+
+        friend class app;
+
+        friend class frame;
+
+    private:
+        window(math::isize size, char const *title, scalar scale);
+
+        class impl;
+
+        std::unique_ptr<impl> pimpl_;
+    };
+
+    template<typename InputIt>
+    void render(window &w, InputIt begin, InputIt end) {
+        frame f{w.frame()};
+        for (auto i = begin; i != end; ++i) {
+            i->draw(f);
+        }
+    }
 
 } // namespace kmint::ui
 

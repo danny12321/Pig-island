@@ -4,15 +4,15 @@
 #include "kmint/ui/drawable.hpp"
 
 namespace kmint {
-namespace ui {
+    namespace ui {
 
-class frame;
+        class frame;
 
-class noop_drawable : public drawable {
-  void draw(frame &f) const override {}
-};
+        class noop_drawable : public drawable {
+            void draw(frame &f) const override {}
+        };
 
-} // namespace ui
+    } // namespace ui
 
 } // namespace kmint
 

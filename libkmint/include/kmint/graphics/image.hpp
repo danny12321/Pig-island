@@ -7,27 +7,32 @@
 #include <utility>
 
 namespace kmint {
-namespace graphics {
+    namespace graphics {
 
-class image {
-public:
-  explicit image(std::string image_filename, scalar scale = scalar(1.0),
-                 math::angle rotation = math::angle::from_degrees(0))
-      : filename_{std::move(image_filename)}, scale_{scale}, rotation_{
-                                                                 rotation} {}
-  std::string const &filename() const noexcept { return filename_; }
-  scalar scale() const noexcept { return scale_; }
-  void scale(scalar new_scale) noexcept { scale_ = new_scale; }
-  math::angle rotation() const noexcept { return rotation_; }
-  void rotation(math::angle r) { rotation_ = r; }
+        class image {
+        public:
+            explicit image(std::string image_filename, scalar scale = scalar(1.0),
+                           math::angle rotation = math::angle::from_degrees(0))
+                    : filename_{std::move(image_filename)}, scale_{scale}, rotation_{
+                    rotation} {}
 
-private:
-  std::string filename_;
-  scalar scale_;
-  math::angle rotation_;
-};
+            std::string const &filename() const noexcept { return filename_; }
 
-} // namespace graphics
+            scalar scale() const noexcept { return scale_; }
+
+            void scale(scalar new_scale) noexcept { scale_ = new_scale; }
+
+            math::angle rotation() const noexcept { return rotation_; }
+
+            void rotation(math::angle r) { rotation_ = r; }
+
+        private:
+            std::string filename_;
+            scalar scale_;
+            math::angle rotation_;
+        };
+
+    } // namespace graphics
 } // namespace kmint
 
 #endif

@@ -10,17 +10,20 @@
 
 namespace kmint::ui::sdl {
 
-class surface {
-public:
-  explicit surface(std::string const &filename)
-      : surface_{create(IMG_Load, filename.c_str())} {}
-  scalar width() const noexcept { return static_cast<scalar>(surface_->w); }
-  scalar height() const noexcept { return static_cast<scalar>(surface_->h); }
-  operator SDL_Surface *() const noexcept { return surface_.get(); }
+    class surface {
+    public:
+        explicit surface(std::string const &filename)
+                : surface_{create(IMG_Load, filename.c_str())} {}
 
-private:
-  unique_ptr<SDL_Surface> surface_;
-};
+        scalar width() const noexcept { return static_cast<scalar>(surface_->w); }
+
+        scalar height() const noexcept { return static_cast<scalar>(surface_->h); }
+
+        operator SDL_Surface *() const noexcept { return surface_.get(); }
+
+    private:
+        unique_ptr<SDL_Surface> surface_;
+    };
 
 
 } // namespace kmint::ui::sdl

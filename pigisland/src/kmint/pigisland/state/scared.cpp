@@ -6,14 +6,15 @@
 #include "kmint/pigisland/state/scared.hpp"
 
 namespace kmint {
-namespace pigisland {
+    namespace pigisland {
 
-    void scared::execute(delta_time dt) {
-        wandering::execute(dt);
-        steps++;
+        void scared::execute(delta_time dt) {
+            wandering::execute(dt);
+            steps++;
 
-        if(steps >= walkingDistance) {
-            context->setState(new shark_wandering(context));
+            if (steps >= walkingDistance) {
+                context->setState(new shark_wandering(context));
+            }
         }
     }
-}}
+}

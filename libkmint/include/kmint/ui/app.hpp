@@ -17,36 +17,43 @@ namespace kmint::ui {
 
     At any given moment, at most one app-object should exist.
 */
-class app {
-public:
-  //! \brief Construct an ui app, initializing all UI subsystems.
-  //! \throw initialization_error Indicates one of the UI sublayers failed to
-  //! initialize
-  app();
-  ~app();
-  app(app const &) = delete;
-  app &operator=(app const &) = delete;
-  app(app &&) noexcept;
-  app &operator=(app &&) noexcept;
-  //! \brief Construct a window
-  //!
-  //! \ref kmint::ui::window "window's" constructor is private to prevent
-  //! windows from being created without an initialized ui subsystem. This
-  //! method will forward its arguments to window's constructor.
-  //!
-  //! \param size the dimensions of the window
-  //! \param title title of the window
-  //! \param scale optional scale factor (defaults to 1.0)
-  //! \return a window object.
-  window create_window(math::isize size, char const *title,
-                       scalar scale = scalar(1.0)) {
-    return {size, title, scale};
-  }
+    class app {
+    public:
+        //! \brief Construct an ui app, initializing all UI subsystems.
+        //! \throw initialization_error Indicates one of the UI sublayers failed to
+        //! initialize
+        app();
 
-private:
-  class impl;
-  std::unique_ptr<impl> pimpl_;
-};
+        ~app();
+
+        app(app const &) = delete;
+
+        app &operator=(app const &) = delete;
+
+        app(app &&) noexcept;
+
+        app &operator=(app &&) noexcept;
+
+        //! \brief Construct a window
+        //!
+        //! \ref kmint::ui::window "window's" constructor is private to prevent
+        //! windows from being created without an initialized ui subsystem. This
+        //! method will forward its arguments to window's constructor.
+        //!
+        //! \param size the dimensions of the window
+        //! \param title title of the window
+        //! \param scale optional scale factor (defaults to 1.0)
+        //! \return a window object.
+        window create_window(math::isize size, char const *title,
+                             scalar scale = scalar(1.0)) {
+            return {size, title, scale};
+        }
+
+    private:
+        class impl;
+
+        std::unique_ptr<impl> pimpl_;
+    };
 
 } // namespace kmint::ui
 

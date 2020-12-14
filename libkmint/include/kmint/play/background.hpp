@@ -18,17 +18,18 @@ namespace kmint::play {
  * This actor should be the first actor built on stage. Otherwise, its 
  * drawable will obscure the underlying actors.
  */
-class background : public static_actor {
-public:
-  background(math::size field_size, graphics::image const &img)
-      : static_actor{{field_size.width() * scalar(0.5),
-                      field_size.height() * scalar(0.5)}},
-        drawable_{*this, img} {}
-  ui::drawable const &drawable() const override { return drawable_; }
+    class background : public static_actor {
+    public:
+        background(math::size field_size, graphics::image const &img)
+                : static_actor{{field_size.width() * scalar(0.5),
+                                       field_size.height() * scalar(0.5)}},
+                  drawable_{*this, img} {}
 
-private:
-  image_drawable drawable_;
-};
+        ui::drawable const &drawable() const override { return drawable_; }
+
+    private:
+        image_drawable drawable_;
+    };
 
 } // namespace kmint::play
 

@@ -5,15 +5,16 @@
 
 namespace kmint::ui::sdl {
 
-template <typename F, typename... Args>
-decltype(auto) apply_rgb(F &&f, graphics::color c, Args &&... args) {
-  return f(std::forward<Args>(args)..., c.red(), c.green(), c.blue());
-}
-template <typename F, typename... Args>
-decltype(auto) apply_rgba(F &&f, graphics::color c, Args &&... args) {
-  return f(std::forward<Args>(args)..., c.red(), c.green(), c.blue(),
-           c.alpha());
-}
+    template<typename F, typename... Args>
+    decltype(auto) apply_rgb(F &&f, graphics::color c, Args &&... args) {
+        return f(std::forward<Args>(args)..., c.red(), c.green(), c.blue());
+    }
+
+    template<typename F, typename... Args>
+    decltype(auto) apply_rgba(F &&f, graphics::color c, Args &&... args) {
+        return f(std::forward<Args>(args)..., c.red(), c.green(), c.blue(),
+                 c.alpha());
+    }
 
 } // namespace kmint::ui::sdl
 

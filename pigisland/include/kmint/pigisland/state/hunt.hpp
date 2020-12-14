@@ -9,22 +9,24 @@
 #include "kmint/pigisland/state/state.hpp"
 
 namespace kmint {
-namespace pigisland {
-    class hunt : public state {
-    public:
-        hunt(pigisland::context *context, play::actor &target) : state(context), target(target) {
-            context->setTint(graphics::colors::red);
-            auto targetLocation = getClosestNode(target.location());
-            tomtom = std::make_unique<navigation>(&context->graph, &context->node(), targetLocation);
+    namespace pigisland {
+        class hunt : public state {
+        public:
+            hunt(pigisland::context *context, play::actor &target) : state(context), target(target) {
+                context->setTint(graphics::colors::red);
+                auto targetLocation = getClosestNode(target.location());
+                tomtom = std::make_unique<navigation>(&context->graph, &context->node(), targetLocation);
+            };
+
+            void execute(delta_time dt) override;
+
+        private:
+            play::actor &target;
+            std::unique_ptr<navigation> tomtom;
+
+            map::map_node *getClosestNode(math::vector2d position);
         };
-
-        void execute(delta_time dt) override;
-
-    private:
-        play::actor &target;
-        std::unique_ptr<navigation> tomtom;
-        map::map_node *getClosestNode(math::vector2d position);
-    };
-}}
+    }
+}
 
 #endif //PIG_ISLAND_HUNT_HPP

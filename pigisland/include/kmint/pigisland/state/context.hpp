@@ -10,27 +10,27 @@
 #include "kmint/primitives.hpp"
 
 namespace kmint {
-namespace pigisland {
+    namespace pigisland {
 
-    class state;
+        class state;
 
-    class context : public play::map_bound_actor {
-    public:
-        context(map::map_graph &g, map::map_node &initial_node) : play::map_bound_actor{initial_node}, graph(g) {};
+        class context : public play::map_bound_actor {
+        public:
+            context(map::map_graph &g, map::map_node &initial_node) : play::map_bound_actor{initial_node}, graph(g) {};
 
-        void setState(state *newState) {
-            activeState = newState;
-        }
+            void setState(state *newState) {
+                activeState = newState;
+            }
 
-        virtual void setTint(graphics::color color) = 0;
+            virtual void setTint(graphics::color color) = 0;
 
-        delta_time t_passed_{};
-        map::map_graph &graph;
-        int stepsMade = 0;
+            delta_time t_passed_{};
+            map::map_graph &graph;
+            int stepsMade = 0;
 
-    protected:
-        state *activeState;
-    };
-}
+        protected:
+            state *activeState;
+        };
+    }
 }
 #endif //PIG_ISLAND_CONTEXT_HPP

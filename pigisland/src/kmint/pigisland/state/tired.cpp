@@ -7,16 +7,17 @@
 
 
 namespace kmint {
-namespace pigisland {
-    void tired::execute(delta_time dt) {
-        auto nextNode = nav->getNextNode();
-        if (nextNode != nullptr) {
-            context->node(*nextNode);
-        }
+    namespace pigisland {
+        void tired::execute(delta_time dt) {
+            auto nextNode = nav->getNextNode();
+            if (nextNode != nullptr) {
+                context->node(*nextNode);
+            }
 
-        if(context->node().node_id() == restingPlaceId) {
-            context->stepsMade = 0;
-            context->setState(new shark_wandering(context));
+            if (context->node().node_id() == restingPlaceId) {
+                context->stepsMade = 0;
+                context->setState(new shark_wandering(context));
+            }
         }
     }
-}}
+}

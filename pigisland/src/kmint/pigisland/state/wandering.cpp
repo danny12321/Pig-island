@@ -7,10 +7,11 @@
 
 
 namespace kmint {
-namespace pigisland {
+    namespace pigisland {
 
-    void wandering::execute(delta_time dt) {
-        int next_index = random_int(0, context->node().num_edges());
-        context->node(context->node()[next_index].to());
+        void wandering::execute(delta_time dt) {
+            int next_index = random_int(0, context->node().num_edges());
+            context->node(context->node()[next_index].to());
+        }
     }
-}}
+}

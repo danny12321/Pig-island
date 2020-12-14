@@ -12,26 +12,31 @@ struct SDL_Renderer;
 
 namespace kmint::ui::sdl {
 
-class texture {
-public:
-  texture(surface const &s, SDL_Renderer *ren)
-      : texture_{create(SDL_CreateTextureFromSurface, ren, s)},
-        width_{s.width()}, height_{s.height()} {}
-  scalar width() const noexcept { return width_; }
-  scalar height() const noexcept { return height_; }
-  operator SDL_Texture *() const noexcept { return unwrap(); }
-  SDL_Texture *unwrap() const noexcept { return texture_.get(); }
+    class texture {
+    public:
+        texture(surface const &s, SDL_Renderer *ren)
+                : texture_{create(SDL_CreateTextureFromSurface, ren, s)},
+                  width_{s.width()}, height_{s.height()} {}
 
-private:
-  unique_ptr<SDL_Texture> texture_;
-  scalar width_;
-  scalar height_;
-};
+        scalar width() const noexcept { return width_; }
 
-void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
-            scalar scale, math::angle a = math::angle::from_degrees(0));
-void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
-            scalar scale, graphics::color tint, math::angle a = math::angle::from_degrees(0));
+        scalar height() const noexcept { return height_; }
+
+        operator SDL_Texture *() const noexcept { return unwrap(); }
+
+        SDL_Texture *unwrap() const noexcept { return texture_.get(); }
+
+    private:
+        unique_ptr<SDL_Texture> texture_;
+        scalar width_;
+        scalar height_;
+    };
+
+    void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
+                scalar scale, math::angle a = math::angle::from_degrees(0));
+
+    void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
+                scalar scale, graphics::color tint, math::angle a = math::angle::from_degrees(0));
 
 } // namespace kmint::ui::sdl
 

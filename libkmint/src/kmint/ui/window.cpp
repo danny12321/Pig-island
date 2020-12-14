@@ -16,78 +16,90 @@
 
 namespace kmint::ui {
 
-class window::impl {
-public:
-  friend class frame;
-  impl(math::isize size, char const *title, scalar scale)
-      : win_{sdl::create(SDL_CreateWindow, title, SDL_WINDOWPOS_UNDEFINED,
-                         SDL_WINDOWPOS_UNDEFINED, size.width() * scale,
-                         size.height() * scale, SDL_WINDOW_OPENGL)},
-        ren_{win_.get(), scale} {}
+    class window::impl {
+    public:
+        friend class frame;
 
-  renderer &get_renderer() noexcept { return ren_; }
+        impl(math::isize size, char const *title, scalar scale)
+                : win_{sdl::create(SDL_CreateWindow, title, SDL_WINDOWPOS_UNDEFINED,
+                                   SDL_WINDOWPOS_UNDEFINED, size.width() * scale,
+                                   size.height() * scale, SDL_WINDOW_OPENGL)},
+                  ren_{win_.get(), scale} {}
 
-private:
-  sdl::unique_ptr<SDL_Window> win_;
-  renderer ren_;
-};
+        renderer &get_renderer() noexcept { return ren_; }
+
+    private:
+        sdl::unique_ptr<SDL_Window> win_;
+        renderer ren_;
+    };
 
 /* FRAME */
-struct frame::impl {
-  renderer *ren_;
-};
+    struct frame::impl {
+        renderer *ren_;
+    };
 
-frame::frame(window &w) : pimpl_{new frame::impl{&w.pimpl_->get_renderer()}} {
-  pimpl_->ren_->begin_frame();
-}
-frame::frame(frame &&other) noexcept = default;
-frame &frame::operator=(frame &&other) noexcept = default;
-frame::~frame() { pimpl_->ren_->end_frame(); }
-void frame::render_color(graphics::color const &color) noexcept {
-  pimpl_->ren_->render_color(color);
-}
-graphics::color frame::render_color() const noexcept {
-  return pimpl_->ren_->render_color();
-}
+    frame::frame(window &w) : pimpl_{new frame::impl{&w.pimpl_->get_renderer()}} {
+        pimpl_->ren_->begin_frame();
+    }
 
-void frame::draw_image(math::vector2d center, graphics::image const &img) {
-  pimpl_->ren_->render_image(center, img);
-}
-void frame::draw_image(math::vector2d center, graphics::image const &img,
-                       graphics::color tint) {
-  pimpl_->ren_->render_image(center, img, tint);
-}
-void frame::draw_rectangle(math::vector2d center, math::size size,
-                           graphics::color const &color) {
-  auto w = size.width();
-  auto h = size.height();
-  math::vector2d top_left{center.x() - w / 2.0f, center.y() - h / 2.0f};
-  draw_rectangle(math::rectangle{top_left, size}, color);
-}
+    frame::frame(frame &&other) noexcept = default;
 
-void frame::draw_rectangle(math::rectangle rect, graphics::color const &color) {
-  pimpl_->ren_->render_color(color);
-  pimpl_->ren_->render_rectangle(rect);
-}
-void frame::draw_rectangle_outline(math::rectangle rect,
-                                   graphics::color const &color) {
-  pimpl_->ren_->render_color(color);
-  pimpl_->ren_->render_rectangle_outline(rect);
-}
+    frame &frame::operator=(frame &&other) noexcept = default;
 
-void frame::draw_line(math::vector2d from, math::vector2d to) {
-  pimpl_->ren_->render_line(from, to);
-}
-void frame::draw_line(math::line_segment segment) {
-  draw_line(segment.begin, segment.end);
-}
+    frame::~frame() { pimpl_->ren_->end_frame(); }
+
+    void frame::render_color(graphics::color const &color) noexcept {
+        pimpl_->ren_->render_color(color);
+    }
+
+    graphics::color frame::render_color() const noexcept {
+        return pimpl_->ren_->render_color();
+    }
+
+    void frame::draw_image(math::vector2d center, graphics::image const &img) {
+        pimpl_->ren_->render_image(center, img);
+    }
+
+    void frame::draw_image(math::vector2d center, graphics::image const &img,
+                           graphics::color tint) {
+        pimpl_->ren_->render_image(center, img, tint);
+    }
+
+    void frame::draw_rectangle(math::vector2d center, math::size size,
+                               graphics::color const &color) {
+        auto w = size.width();
+        auto h = size.height();
+        math::vector2d top_left{center.x() - w / 2.0f, center.y() - h / 2.0f};
+        draw_rectangle(math::rectangle{top_left, size}, color);
+    }
+
+    void frame::draw_rectangle(math::rectangle rect, graphics::color const &color) {
+        pimpl_->ren_->render_color(color);
+        pimpl_->ren_->render_rectangle(rect);
+    }
+
+    void frame::draw_rectangle_outline(math::rectangle rect,
+                                       graphics::color const &color) {
+        pimpl_->ren_->render_color(color);
+        pimpl_->ren_->render_rectangle_outline(rect);
+    }
+
+    void frame::draw_line(math::vector2d from, math::vector2d to) {
+        pimpl_->ren_->render_line(from, to);
+    }
+
+    void frame::draw_line(math::line_segment segment) {
+        draw_line(segment.begin, segment.end);
+    }
 
 /* WINDOW */
-window::window(math::isize size, char const *title, scalar scale)
-    : pimpl_{new window::impl{size, title, scale}} {}
+    window::window(math::isize size, char const *title, scalar scale)
+            : pimpl_{new window::impl{size, title, scale}} {}
 
-window::~window() = default;
-window::window(window && /*other*/) noexcept = default;
-window &window::operator=(window && /*other*/) noexcept = default;
+    window::~window() = default;
+
+    window::window(window && /*other*/) noexcept = default;
+
+    window &window::operator=(window && /*other*/) noexcept = default;
 
 } // namespace kmint::ui

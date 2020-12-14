@@ -6,23 +6,24 @@
 #include <utility>
 
 namespace kmint::ui {
-class frame;
+    class frame;
 } // namespace kmint::ui
 
 namespace kmint::play {
 
-class actor;
+    class actor;
 
-class texture_drawable : public ui::drawable {
-public:
-  texture_drawable(actor const &owner, ui::texture texture)
-      : actor_{&owner}, texture_{std::move(texture)} {}
-  void draw(ui::frame &frame) const override;
+    class texture_drawable : public ui::drawable {
+    public:
+        texture_drawable(actor const &owner, ui::texture texture)
+                : actor_{&owner}, texture_{std::move(texture)} {}
 
-private:
-  actor const *actor_;
-  ui::texture texture_;
-};
+        void draw(ui::frame &frame) const override;
+
+    private:
+        actor const *actor_;
+        ui::texture texture_;
+    };
 
 } // namespace kmint::play
 

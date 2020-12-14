@@ -6,19 +6,24 @@
 
 namespace kmint::ui {
 
-class frame;
+    class frame;
 
-class drawable {
-public:
-  drawable() = default;
-  drawable(drawable const &) = delete;
-  drawable(drawable &&) = delete;
-  drawable &operator=(drawable const &) = delete;
-  drawable &operator=(drawable &&) = delete;
-  virtual ~drawable() = default;
+    class drawable {
+    public:
+        drawable() = default;
 
-  virtual void draw(frame &f) const = 0;
-};
+        drawable(drawable const &) = delete;
+
+        drawable(drawable &&) = delete;
+
+        drawable &operator=(drawable const &) = delete;
+
+        drawable &operator=(drawable &&) = delete;
+
+        virtual ~drawable() = default;
+
+        virtual void draw(frame &f) const = 0;
+    };
 
 } // namespace kmint::ui
 

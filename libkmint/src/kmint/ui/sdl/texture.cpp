@@ -4,41 +4,43 @@
 
 namespace kmint::ui::sdl {
 
-namespace {
+    namespace {
 
-class texture_tint {
-public:
-  texture_tint(sdl::texture const &texture, graphics::color c)
-      : texture_{&texture} {
-    apply_rgb(SDL_SetTextureColorMod, c, texture_->unwrap());
-  }
-  ~texture_tint() {
-    apply_rgb(SDL_SetTextureColorMod, graphics::colors::white,
-              texture_->unwrap());
-  }
+        class texture_tint {
+        public:
+            texture_tint(sdl::texture const &texture, graphics::color c)
+                    : texture_{&texture} {
+                apply_rgb(SDL_SetTextureColorMod, c, texture_->unwrap());
+            }
 
-private:
-  sdl::texture const *texture_;
-};
-} // namespace
+            ~texture_tint() {
+                apply_rgb(SDL_SetTextureColorMod, graphics::colors::white,
+                          texture_->unwrap());
+            }
 
-void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
-            scalar scale, math::angle a) {
-  auto w = t.width() * scale;
-  auto h = t.height() * scale;
-  auto x = center.x() - w / 2.0;
-  auto y = center.y() - h / 2.0;
+        private:
+            sdl::texture const *texture_;
+        };
+    } // namespace
 
-  SDL_Rect r;
-  r.x = static_cast<int>(x);
-  r.y = static_cast<int>(y);
-  r.w = static_cast<int>(w);
-  r.h = static_cast<int>(h);
-  SDL_RenderCopyEx(ren, t.unwrap(), nullptr, &r, a.degrees(), NULL, SDL_FLIP_NONE);
-}
-void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
-            scalar scale, graphics::color tint, math::angle a) {
-  texture_tint tt{t, tint};
-  render(ren, t, center, scale, a);
-}
+    void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
+                scalar scale, math::angle a) {
+        auto w = t.width() * scale;
+        auto h = t.height() * scale;
+        auto x = center.x() - w / 2.0;
+        auto y = center.y() - h / 2.0;
+
+        SDL_Rect r;
+        r.x = static_cast<int>(x);
+        r.y = static_cast<int>(y);
+        r.w = static_cast<int>(w);
+        r.h = static_cast<int>(h);
+        SDL_RenderCopyEx(ren, t.unwrap(), nullptr, &r, a.degrees(), NULL, SDL_FLIP_NONE);
+    }
+
+    void render(SDL_Renderer *ren, sdl::texture const &t, math::vector2d center,
+                scalar scale, graphics::color tint, math::angle a) {
+        texture_tint tt{t, tint};
+        render(ren, t, center, scale, a);
+    }
 } // namespace kmint::ui::sdl

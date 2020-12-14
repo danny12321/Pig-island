@@ -3,17 +3,17 @@
 
 namespace kmint::ui {
 
-class sprite {
-public:
-  sprite(texture const &t, isize cutout);
+    class sprite {
+    public:
+        sprite(texture const &t, isize cutout);
 
-private:
-  texture const *texture_;
-  isize cutout_;
-  vector2d center_{};
-  graphics::color tint{graphics::colors::white};
-  scalar scale{scalar(1.0)};
-};
+    private:
+        texture const *texture_;
+        isize cutout_;
+        vector2d center_{};
+        graphics::color tint{graphics::colors::white};
+        scalar scale{scalar(1.0)};
+    };
 
 } // namespace kmint::ui
 

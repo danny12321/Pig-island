@@ -16,20 +16,23 @@ namespace kmint::play {
  *
  * \tparam Graph the type of graph this actor represents
  */
-template <typename Graph> class graph_actor : public free_roaming_actor {
-public:
-  graph_actor(math::vector2d location, Graph const &g)
-      : free_roaming_actor{location}, drawable_{g} {};
-  bool perceivable() const override { return false; }
-  ui::drawable const &drawable() const override { return drawable_; }
+    template<typename Graph>
+    class graph_actor : public free_roaming_actor {
+    public:
+        graph_actor(math::vector2d location, Graph const &g)
+                : free_roaming_actor{location}, drawable_{g} {};
 
-private:
-  graph_drawable<Graph> drawable_;
-};
+        bool perceivable() const override { return false; }
+
+        ui::drawable const &drawable() const override { return drawable_; }
+
+    private:
+        graph_drawable<Graph> drawable_;
+    };
 
 /*! \brief A specialization of graph_actor for maps
  */
-using map_actor = graph_actor<map::map_graph>;
+    using map_actor = graph_actor<map::map_graph>;
 } // namespace kmint::play
 
 #endif

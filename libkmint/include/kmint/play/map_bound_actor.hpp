@@ -6,7 +6,7 @@
 namespace kmint::play {
 
 //! Base class for actors that are situated on a map.
-using map_bound_actor = graph_bound_actor<map::map_graph>;
+    using map_bound_actor = graph_bound_actor<map::map_graph>;
 
 }  // kmint
 
