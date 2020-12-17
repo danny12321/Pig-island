@@ -28,18 +28,21 @@ namespace kmint {
 
             play::image_drawable drawable_;
 
-            void coherence();
+            math::vector2d coherence();
 
-            void separation();
+            math::vector2d separation();
 
-            float coherenceFactor = 0.005;
-            float separationFactor = 0.05;
-            float alignmentFactor = 0.05;
-            float maxVelocity = 10;
+            math::vector2d alignment();
+
+            math::vector2d keepWithinBounds();
+
+            float coherenceFactor = 0.8;
+            float separationFactor = 1.3;
+            float alignmentFactor = 0.1;
+            float keepWithinBoundFactor = 1.5;
+            float maxVelocity = 100;
 
             void maxSpeed();
-
-            void alignment();
         };
 
     } // namespace pigisland
