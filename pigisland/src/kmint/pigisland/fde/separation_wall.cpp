@@ -8,8 +8,8 @@
 namespace kmint {
     namespace pigisland {
         math::vector2d separation_wall::getSteering() const {
-            float lookingDistance = 20;
-            float force = 10;
+            float lookingDistance = 50;
+            float force = 1.5;
             math::vector2d steering{0, 0};
 
             // vertical wall check

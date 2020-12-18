@@ -28,7 +28,11 @@ add_executable(pigisland
         src/kmint/pigisland/state/shark_wandering.cpp
         src/kmint/pigisland/fde/force_driven_entity.cpp
         include/kmint/pigisland/fde/iflock.hpp
-        src/kmint/pigisland/fde/coherence_flock.cpp src/kmint/pigisland/fde/alignment_flock.cpp src/kmint/pigisland/fde/separation_flock.cpp src/kmint/pigisland/fde/separation_wall.cpp)
+        src/kmint/pigisland/fde/coherence_flock.cpp
+        src/kmint/pigisland/fde/alignment_flock.cpp
+        src/kmint/pigisland/fde/separation_flock.cpp
+        src/kmint/pigisland/fde/separation_wall.cpp
+        src/kmint/pigisland/fde/follow_actor.cpp)
 
 target_compile_features(pigisland PUBLIC cxx_std_17)
 target_link_libraries(pigisland PRIVATE kmint)

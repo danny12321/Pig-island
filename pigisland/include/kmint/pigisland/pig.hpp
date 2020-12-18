@@ -5,13 +5,15 @@
 #include <tuple>
 #include <vector>
 #include "./fde/force_driven_entity.hpp"
+#include "shark.hpp"
+#include "boat.hpp"
 
 namespace kmint {
     namespace pigisland {
 
     class pig : public force_driven_entity {
         public:
-            explicit pig(math::vector2d location);
+            explicit pig(math::vector2d location, boat &boat, shark &shark);
 
             [[nodiscard]] const ui::drawable &drawable() const override { return drawable_; }
 

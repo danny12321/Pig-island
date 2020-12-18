@@ -15,6 +15,10 @@ namespace kmint {
 
             void act(delta_time dt) override;
 
+            void addFlock(std::unique_ptr<iflock> flock) {
+                flocks.push_back(std::move(flock));
+            }
+
             [[nodiscard]] math::vector2d getVelocity() const { return velocity; }
 
         private:
