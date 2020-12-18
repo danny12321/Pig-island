@@ -17,7 +17,18 @@ add_executable(pigisland
         src/kmint/pigisland/resources.cpp
         src/kmint/pigisland/shark.cpp
         src/kmint/pigisland/boat.cpp
-        src/kmint/pigisland/pig.cpp src/kmint/pigisland/state/state.cpp src/kmint/pigisland/state/hunt.cpp src/kmint/pigisland/state/scared.cpp src/kmint/pigisland/state/tired.cpp src/kmint/pigisland/state/wandering.cpp src/kmint/pigisland/state/context.cpp src/kmint/pigisland/navigation.cpp src/kmint/pigisland/state/shark_wandering.cpp include/kmint/pigisland/state/shark_wandering.hpp)
+        src/kmint/pigisland/pig.cpp
+        src/kmint/pigisland/state/state.cpp
+        src/kmint/pigisland/state/hunt.cpp
+        src/kmint/pigisland/state/scared.cpp
+        src/kmint/pigisland/state/tired.cpp
+        src/kmint/pigisland/state/wandering.cpp
+        src/kmint/pigisland/state/context.cpp
+        src/kmint/pigisland/navigation.cpp
+        src/kmint/pigisland/state/shark_wandering.cpp
+        src/kmint/pigisland/fde/force_driven_entity.cpp
+        include/kmint/pigisland/fde/iflock.hpp
+        src/kmint/pigisland/fde/coherence_flock.cpp src/kmint/pigisland/fde/alignment_flock.cpp src/kmint/pigisland/fde/separation_flock.cpp src/kmint/pigisland/fde/separation_wall.cpp)
 
 target_compile_features(pigisland PUBLIC cxx_std_17)
 target_link_libraries(pigisland PRIVATE kmint)
