@@ -28,15 +28,20 @@ namespace kmint {
         math::vector2d pig::coherence() {
             // we can't see any friends
             if (num_perceived_actors() <= 0) return {0, 0};
+            int coherenceView = 25;
 
             math::vector2d center{0, 0};
+            int total = 0;
 
             for (auto i = begin_perceived(); i != end_perceived(); ++i) {
-                center += i->location();
+                if (math::distance(i->location(), this->location()) < coherenceView) {
+                    total++;
+                    center += i->location();
+                }
             }
 
-            center = math::vector2d{center.x() / num_perceived_actors(), center.y() / num_perceived_actors()};
-
+            center = math::vector2d{center.x() / total, center.y() / total};
+            if (total <= 0) return {0, 0};
             return {
                     (center.x() - location().x()) * coherenceFactor,
                     (center.y() - location().y()) * coherenceFactor,
@@ -48,7 +53,7 @@ namespace kmint {
             if (num_perceived_actors() <= 0) return {0, 0};
 
             math::vector2d move{0, 0};
-            int separationView = 50;
+            int separationView = 25;
 
             for (auto i = begin_perceived(); i != end_perceived(); ++i) {
                 // get velocity instead of location
@@ -118,6 +123,31 @@ namespace kmint {
             }
 
             return {0, 0};
+        }
+
+        void pig::addFlockingFactor(FlockingType type, float amount) {
+            switch (type) {
+                case FlockingType::Coherence:
+                    coherenceFactor += amount;
+                    break;
+                case FlockingType::Separation:
+                    separationFactor += amount;
+                    break;
+                case FlockingType::Alignment:
+                    alignmentFactor += amount;
+                    break;
+                case FlockingType::WithinBounds:
+                    keepWithinBoundFactor += amount;
+                    break;
+            }
+        }
+
+        void pig::logFlock() const {
+            std::cout << "Flocking factor: \n";
+            std::cout << "  Coherence: " << coherenceFactor << "\n";
+            std::cout << "  Alignment: " << alignmentFactor << "\n";
+            std::cout << "  Separation: " << separationFactor << "\n";
+            std::cout << "  WithinBounds: " << keepWithinBoundFactor << std::endl;
         }
 
 

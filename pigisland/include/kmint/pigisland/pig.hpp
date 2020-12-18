@@ -5,6 +5,14 @@
 #include <tuple>
 #include <vector>
 
+
+enum FlockingType {
+    Alignment,
+    Separation,
+    Coherence,
+    WithinBounds
+};
+
 namespace kmint {
     namespace pigisland {
 
@@ -23,6 +31,10 @@ namespace kmint {
             // andere actors kan waarnemen.
             scalar perception_range() const override { return 200.f; }
 
+            void addFlockingFactor(FlockingType type, float amount);
+
+            void logFlock() const;
+
         private:
             math::vector2d velocity;
 
@@ -37,7 +49,7 @@ namespace kmint {
             math::vector2d keepWithinBounds();
 
             float coherenceFactor = 0.8;
-            float separationFactor = 1.3;
+            float separationFactor = 1.5;
             float alignmentFactor = 0.1;
             float keepWithinBoundFactor = 1.5;
             float maxVelocity = 100;

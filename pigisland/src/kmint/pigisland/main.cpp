@@ -45,6 +45,21 @@ int main() {
     // toetsaanslagen)
     ui::events::event_source event_source{};
 
+    auto changeFlockingFactor = [](play::stage &s, FlockingType type, float amount) {
+        bool firstPig = true;
+        for (auto i = s.begin(); i != s.end(); ++i) {
+            auto piggie = dynamic_cast<pigisland::pig *>(i.operator->());
+            if (piggie != nullptr) {
+                piggie->addFlockingFactor(type, amount);
+
+                if(firstPig) {
+                    firstPig = false;
+                    piggie->logFlock();
+                }
+            }
+        }
+    };
+
     // main_loop stuurt alle actors aan.
     main_loop(s, window, [&](delta_time dt, loop_controls &ctl) {
         // gebruik dt om te kijken hoeveel tijd versterken is
@@ -75,6 +90,31 @@ int main() {
                         break;
                     case ui::events::key::d:
                         ctl.debug_overlay = !ctl.debug_overlay;
+                        break;
+                    case ui::events::key::o:
+                        changeFlockingFactor(s, FlockingType::Coherence, .1);
+                        break;
+                    case ui::events::key::l:
+                        changeFlockingFactor(s, FlockingType::Coherence, -.1);
+                        break;
+                    case ui::events::key::i:
+                        changeFlockingFactor(s, FlockingType::Separation, .1);
+                        break;
+                    case ui::events::key::k:
+                        changeFlockingFactor(s, FlockingType::Separation, -.1);
+                        break;
+                    case ui::events::key::u:
+                        changeFlockingFactor(s, FlockingType::Alignment, .01);
+                        break;
+                    case ui::events::key::j:
+                        changeFlockingFactor(s, FlockingType::Alignment, -.01);
+                        break;
+                    case ui::events::key::y:
+                        changeFlockingFactor(s, FlockingType::WithinBounds, .1);
+                        break;
+                    case ui::events::key::h:
+                        changeFlockingFactor(s, FlockingType::WithinBounds, -.1);
+                        break;
                     default:
                         break;
                 }
