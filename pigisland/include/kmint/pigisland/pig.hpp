@@ -17,6 +17,13 @@ namespace kmint {
 
             [[nodiscard]] const ui::drawable &drawable() const override { return drawable_; }
 
+        // als incorporeal false is, doet de actor mee aan collision detection
+        bool incorporeal() const override { return false; }
+
+        // geeft de lengte van een zijde van de collision box van deze actor terug.
+        // Belangrijk voor collision detection
+        scalar collision_range() const override { return 16.0; }
+
             void act(delta_time dt) override;
 
             // geeft aan dat de haai andere actors kan zien
@@ -26,9 +33,11 @@ namespace kmint {
             // andere actors kan waarnemen.
             [[nodiscard]] scalar perception_range() const override { return 200.f; }
 
-        private:
+        void gotEaten();
+
+    private:
             play::image_drawable drawable_;
-        };
+    };
 
     } // namespace pigisland
 } // namespace kmint

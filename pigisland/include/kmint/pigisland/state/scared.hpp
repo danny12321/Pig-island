@@ -18,6 +18,8 @@ namespace kmint {
 
             void execute(delta_time dt) override;
 
+            bool canEatPig() override { return false; };
+
         private:
             int steps = 0;
             const int walkingDistance = 10;

@@ -15,6 +15,8 @@ namespace kmint {
 
             virtual void execute(delta_time dt) = 0;
 
+            virtual bool canEatPig() = 0;
+
             context *context;
         };
     }

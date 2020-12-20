@@ -8,7 +8,7 @@
 namespace kmint {
     namespace pigisland {
         math::vector2d follow_actor::getSteering() const {
-            float factor = -.2;
+            float factor = .2;
             int followActorView = 100;
 
             if (math::distance(entity.location(), actor.location()) < followActorView) {

@@ -21,6 +21,8 @@ namespace kmint {
 
             void execute(delta_time dt) override;
 
+            bool canEatPig() override { return false; };
+
         private:
             std::unique_ptr<navigation> nav;
 

@@ -5,6 +5,7 @@
 #include <kmint/pigisland/state/scared.hpp>
 #include <kmint/pigisland/state/shark_wandering.hpp>
 #include <kmint/pigisland/boat.hpp>
+#include <kmint/pigisland/pig.hpp>
 
 namespace kmint {
     namespace pigisland {
@@ -16,6 +17,8 @@ namespace kmint {
 
         void shark::act(delta_time dt) {
             t_passed_ += dt;
+            eatPig();
+
             if (to_seconds(t_passed_) >= 1) {
                 // Do state
                 activeState->execute(dt);
@@ -39,6 +42,16 @@ namespace kmint {
 
         void shark::setTint(graphics::color color) {
             drawable_.set_tint(color);
+        }
+
+        void shark::eatPig() {
+            if(!activeState->canEatPig()) return;
+
+            for(auto it = begin_collision(); it != end_collision(); ++it) {
+                auto piggie = dynamic_cast<pig *>(it.operator->());
+                if(piggie != nullptr)
+                    piggie->gotEaten();
+            }
         }
 
     } // namespace pigisland

@@ -36,6 +36,8 @@ namespace kmint {
 
         private:
             play::image_drawable drawable_;
+
+            void eatPig();
         };
 
     } // namespace pigisland

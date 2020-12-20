@@ -19,6 +19,10 @@ namespace kmint {
             force_driven_entity::act(dt);
         }
 
+        void pig::gotEaten() {
+            this->remove();
+        }
+
     } // namespace pigisland
 
 } // namespace kmint

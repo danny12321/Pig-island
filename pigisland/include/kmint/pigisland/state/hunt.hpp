@@ -20,6 +20,8 @@ namespace kmint {
 
             void execute(delta_time dt) override;
 
+            bool canEatPig() override { return true; };
+
         private:
             play::actor &target;
             std::unique_ptr<navigation> tomtom;

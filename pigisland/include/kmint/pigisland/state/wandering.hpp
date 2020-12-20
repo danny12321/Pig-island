@@ -18,6 +18,7 @@ namespace kmint {
 
             void execute(delta_time dt) override;
 
+            bool canEatPig() override { return true; };
         };
     }
 }
