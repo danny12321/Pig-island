@@ -27,8 +27,11 @@ namespace kmint {
 
             void setTint(graphics::color color) override;
 
+            void repair(int amount);
+
         private:
             play::image_drawable drawable_;
+            int damage = 0;
         };
 
     } // namespace pigisland

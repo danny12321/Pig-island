@@ -8,6 +8,11 @@
 namespace kmint {
     namespace pigisland {
         void hunt::execute(delta_time dt) {
+            if (target.removed()) {
+                context->setState(new shark_wandering(context));
+                return;
+            }
+
             auto targetClosedNode = getClosestNode(target.location());
 
             if (tomtom->getTarget() != targetClosedNode) {
@@ -17,11 +22,6 @@ namespace kmint {
             auto nextNode = tomtom->getNextNode();
             if (nextNode != nullptr) {
                 context->node(*nextNode);
-            }
-
-            if (context->node().node_id() == targetClosedNode->node_id()) {
-                target.remove();
-                context->setState(new shark_wandering(context));
             }
         }
 

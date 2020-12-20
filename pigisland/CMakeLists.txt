@@ -32,7 +32,9 @@ add_executable(pigisland
         src/kmint/pigisland/fde/alignment_flock.cpp
         src/kmint/pigisland/fde/separation_flock.cpp
         src/kmint/pigisland/fde/separation_wall.cpp
-        src/kmint/pigisland/fde/follow_actor.cpp)
+        src/kmint/pigisland/fde/follow_actor.cpp
+        src/kmint/pigisland/state/go_to_repair_place.cpp
+        src/kmint/pigisland/repair_places/repair_place_factory.cpp)
 
 target_compile_features(pigisland PUBLIC cxx_std_17)
 target_link_libraries(pigisland PRIVATE kmint)

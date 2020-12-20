@@ -1,3 +1,4 @@
+#include <kmint/pigisland/state/go_to_repair_place.hpp>
 #include "kmint/pigisland/boat.hpp"
 #include "kmint/pigisland/node_algorithm.hpp"
 #include "kmint/pigisland/resources.hpp"
@@ -16,12 +17,24 @@ namespace kmint {
             t_passed_ += dt;
             if (to_seconds(t_passed_) >= 1) {
                 activeState->execute(dt);
+
+                if (damage < 100) {
+                    ++damage;
+                    if (damage == 100)
+                        setState(new go_to_repair_place(this));
+                }
                 t_passed_ = from_seconds(0);
             }
         }
 
         void boat::setTint(graphics::color color) {
             drawable_.set_tint(color);
+        }
+
+        void boat::repair(int amount) {
+            damage -= amount;
+            std::cout << "repair boat " << amount << std::endl;
+
         }
 
     } // namespace pigisland
