@@ -32,6 +32,7 @@ namespace kmint {
         private:
             play::image_drawable drawable_;
             int damage = 0;
+            void get_pigs_onboard();
         };
 
     } // namespace pigisland
