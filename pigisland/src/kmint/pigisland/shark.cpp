@@ -9,7 +9,7 @@
 
 namespace kmint {
     namespace pigisland {
-        shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, g[526]), drawable_{*this,
+        shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, initial_node), drawable_{*this,
                                                                                                     graphics::image{
                                                                                                             shark_image()}} {
             setState(new shark_wandering(this));
