@@ -10,8 +10,8 @@
 namespace kmint {
     namespace pigisland {
         shark::shark(map::map_graph &g, map::map_node &initial_node) : context(g, initial_node), drawable_{*this,
-                                                                                                    graphics::image{
-                                                                                                            shark_image()}} {
+                                                                                                           graphics::image{
+                                                                                                                   shark_image()}} {
             setState(new shark_wandering(this));
         }
 
@@ -19,7 +19,12 @@ namespace kmint {
             t_passed_ += dt;
             eatPig();
 
-            if (to_seconds(t_passed_) >= 1) {
+            float period = 1;
+
+            // if the shark is in rocks the period is 4 times longer
+            if (this->node().node_info().kind == 'R') period *= 4;
+
+            if (to_seconds(t_passed_) >= period) {
                 // Do state
                 activeState->execute(dt);
                 stepsMade++;
@@ -45,13 +50,18 @@ namespace kmint {
         }
 
         void shark::eatPig() {
-            if(!activeState->canEatPig()) return;
+            if (!activeState->canEatPig()) return;
 
-            for(auto it = begin_collision(); it != end_collision(); ++it) {
+            for (auto it = begin_collision(); it != end_collision(); ++it) {
                 auto piggie = dynamic_cast<pig *>(it.operator->());
-                if(piggie != nullptr)
+                if (piggie != nullptr)
                     piggie->gotEaten();
             }
+        }
+
+        void shark::reset() {
+            setState(new shark_wandering(this));
+            isDone = false;
         }
 
     } // namespace pigisland

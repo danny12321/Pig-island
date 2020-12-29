@@ -1,14 +1,13 @@
 #ifndef KMINT_PIGISLAND_BOAT_HPP
 #define KMINT_PIGISLAND_BOAT_HPP
 
+#include <kmint/pigisland/state/context.hpp>
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
-#include "kmint/pigisland/state/context.hpp"
 
 namespace kmint {
     namespace pigisland {
-
         class boat : public context {
         public:
             boat(map::map_graph &g, map::map_node &initial_node);

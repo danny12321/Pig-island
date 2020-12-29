@@ -11,7 +11,7 @@ namespace kmint {
     namespace pigisland {
         class separation_flock : public iflock {
         public:
-            explicit separation_flock(force_driven_entity& entity) : iflock(entity) {};
+            explicit separation_flock(force_driven_entity& entity, const factor &force_factor) : iflock(entity, force_factor) {};
             [[nodiscard]] math::vector2d getSteering() const override;
         };
     }

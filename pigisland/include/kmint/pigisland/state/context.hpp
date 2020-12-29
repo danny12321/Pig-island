@@ -5,6 +5,7 @@
 #ifndef PIG_ISLAND_CONTEXT_HPP
 #define PIG_ISLAND_CONTEXT_HPP
 
+//#include <kmint/pigisland/simulation.hpp>
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
@@ -28,6 +29,7 @@ namespace kmint {
             map::map_graph &graph;
             int stepsMade = 0;
 
+            bool isDone = false;
         protected:
             state *activeState;
         };

@@ -8,7 +8,6 @@
 namespace kmint {
     namespace pigisland {
         math::vector2d separation_flock::getSteering() const {
-            float separationFactor = 1.5;
             // we can't see any friends
             if (entity.num_perceived_actors() <= 0) return {0, 0};
 
@@ -26,8 +25,8 @@ namespace kmint {
             }
 
             return {
-                    move.x() * separationFactor,
-                    move.y() * separationFactor,
+                    move.x() * force_factor.get_value(),
+                    move.y() * force_factor.get_value(),
             };
         }
     }

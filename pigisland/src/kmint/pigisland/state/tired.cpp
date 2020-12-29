@@ -16,7 +16,7 @@ namespace kmint {
 
             if (context->node().node_id() == restingPlaceId) {
                 context->stepsMade = 0;
-                context->setState(new shark_wandering(context));
+                context->isDone = true;
             }
         }
     }

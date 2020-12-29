@@ -4,7 +4,6 @@
 namespace kmint {
     namespace pigisland {
         math::vector2d coherence_flock::getSteering() const {
-            float coherenceFactor = .8;
             int coherenceView = 25;
 
             // we can't see any friends
@@ -23,8 +22,8 @@ namespace kmint {
             center = math::vector2d{center.x() / total, center.y() / total};
             if (total <= 0) return {0, 0};
             return {
-                    (center.x() - entity.location().x()) * coherenceFactor,
-                    (center.y() - entity.location().y()) * coherenceFactor,
+                    (center.x() - entity.location().x()) * force_factor.get_value(),
+                    (center.y() - entity.location().y()) * force_factor.get_value(),
             };
         }
     }

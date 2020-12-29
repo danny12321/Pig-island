@@ -9,7 +9,6 @@
 namespace kmint {
     namespace pigisland {
         math::vector2d alignment_flock::getSteering() const {
-            float alignmentFactor = .1;
             if (entity.num_perceived_actors() <= 0) return {0, 0};
 
             math::vector2d avgDirection{0, 0};
@@ -30,8 +29,8 @@ namespace kmint {
             if (total <= 0) return {0, 0};
 
             return {
-                    ((avgDirection.x() / total) - entity.getVelocity().x()) * alignmentFactor,
-                    ((avgDirection.y() / total) - entity.getVelocity().y()) * alignmentFactor
+                    ((avgDirection.x() / total) - entity.getVelocity().x()) * force_factor.get_value(),
+                    ((avgDirection.y() / total) - entity.getVelocity().y()) * force_factor.get_value()
             };
         }
     }

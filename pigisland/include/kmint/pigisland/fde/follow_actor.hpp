@@ -11,7 +11,7 @@ namespace kmint {
     namespace pigisland {
         class follow_actor : public iflock {
         public:
-            explicit follow_actor(force_driven_entity& entity, play::actor &actor) : iflock(entity), actor(actor) {};
+            explicit follow_actor(force_driven_entity& entity, play::actor &actor, const factor &force_factor) : iflock(entity, force_factor), actor(actor) {};
             [[nodiscard]] math::vector2d getSteering() const override;
 
         private:

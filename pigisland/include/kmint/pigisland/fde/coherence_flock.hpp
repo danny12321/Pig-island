@@ -11,7 +11,7 @@ namespace kmint {
     namespace pigisland {
         class coherence_flock : public iflock {
         public:
-            explicit coherence_flock(force_driven_entity& entity) : iflock(entity) {};
+            explicit coherence_flock(force_driven_entity& entity, const factor &force_factor) : iflock(entity, force_factor) {};
             [[nodiscard]] math::vector2d getSteering() const override;
         };
     }

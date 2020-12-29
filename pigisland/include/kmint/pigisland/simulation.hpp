@@ -9,19 +9,26 @@
 #include <kmint/play/stage.hpp>
 #include <kmint/map/map.hpp>
 #include <kmint/main.hpp>
+#include "boat.hpp"
+#include "shark.hpp"
+#include "pig.hpp"
 
 namespace kmint {
     namespace pigisland {
+        class simulation_result;
+
         class simulation {
         public:
-            simulation();
-            void run(kmint::ui::window &window);
+            simulation(play::stage &stage, kmint::pigisland::boat &boat, kmint::pigisland::shark &shark);
+            ~simulation();
+
+            [[nodiscard]] simulation_result get_simulation_result();
+
 
         private:
-            play::stage stage;
-            map::map map;
-
-            void handleEvents(loop_controls &ctl);
+            play::stage &stage;
+            std::vector<pig*> pigs;
+            const int pig_amount = 100;
 
         };
     }

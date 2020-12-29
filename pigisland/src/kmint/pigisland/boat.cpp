@@ -9,7 +9,8 @@
 namespace kmint {
     namespace pigisland {
         boat::boat(map::map_graph &g, map::map_node &initial_node) : context(g, initial_node),
-                                                                     drawable_{*this, graphics::image{boat_image()}} {
+                                                                     drawable_{*this,
+                                                                               graphics::image{boat_image()}} {
 
             setState(new wandering(this));
         }
@@ -18,7 +19,12 @@ namespace kmint {
             t_passed_ += dt;
             get_pigs_onboard();
 
-            if (to_seconds(t_passed_) >= 1) {
+            float period = 1;
+
+            // if the boat is in rocks the period is 4 times longer
+            if (this->node().node_info().kind == 'R') period *= 4;
+
+            if (to_seconds(t_passed_) >= period) {
                 activeState->execute(dt);
 
                 if (damage < 100) {
@@ -41,10 +47,10 @@ namespace kmint {
         }
 
         void boat::get_pigs_onboard() {
-            for(auto it = begin_collision(); it != end_collision(); ++it) {
+            for (auto it = begin_collision(); it != end_collision(); ++it) {
                 auto piggie = dynamic_cast<pig *>(it.operator->());
-                if(piggie != nullptr)
-                    piggie->remove();
+                if (piggie != nullptr)
+                    piggie->get_onboard_boat();
             }
         }
 
