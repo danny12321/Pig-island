@@ -16,7 +16,7 @@ namespace kmint {
 
             void act(delta_time dt) override;
 
-            void addFlock(std::unique_ptr<iflock> flock) {
+            void addFlock(std::unique_ptr<iforce> flock) {
                 flocks.push_back(std::move(flock));
             }
 
@@ -27,7 +27,7 @@ namespace kmint {
         private:
             math::vector2d velocity;
 
-            std::vector<std::unique_ptr<iflock>> flocks;
+            std::vector<std::unique_ptr<iforce>> flocks;
 
             float maxVelocity = 100;
 

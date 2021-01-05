@@ -27,7 +27,7 @@ add_executable(pigisland
         src/kmint/pigisland/navigation.cpp
         src/kmint/pigisland/state/shark_wandering.cpp
         src/kmint/pigisland/fde/force_driven_entity.cpp
-        include/kmint/pigisland/fde/iflock.hpp
+        include/kmint/pigisland/fde/iforce.hpp
         src/kmint/pigisland/fde/coherence_flock.cpp
         src/kmint/pigisland/fde/alignment_flock.cpp
         src/kmint/pigisland/fde/separation_flock.cpp

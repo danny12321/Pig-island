@@ -2,8 +2,8 @@
 // Created by Danny on 18-12-2020.
 //
 
-#ifndef PIGISLAND_IFLOCK_HPP
-#define PIGISLAND_IFLOCK_HPP
+#ifndef PIGISLAND_IFORCE_HPP
+#define PIGISLAND_IFORCE_HPP
 
 #include <kmint/pigisland/factors.hpp>
 #include "kmint/play.hpp"
@@ -12,9 +12,9 @@ namespace kmint {
     namespace pigisland {
         class force_driven_entity;
 
-        class iflock {
+        class iforce {
         public:
-            explicit iflock(force_driven_entity &entity, const factor &force_factor) : entity(entity),
+            explicit iforce(force_driven_entity &entity, const factor &force_factor) : entity(entity),
                                                                                        force_factor(force_factor) {
             }
 
@@ -27,4 +27,4 @@ namespace kmint {
     }
 }
 
-#endif //PIGISLAND_IFLOCK_HPP
+#endif //PIGISLAND_IFORCE_HPP
