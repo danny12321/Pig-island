@@ -11,7 +11,6 @@ namespace kmint {
         boat::boat(map::map_graph &g, map::map_node &initial_node) : context(g, initial_node),
                                                                      drawable_{*this,
                                                                                graphics::image{boat_image()}} {
-
             setState(new wandering(this));
         }
 
@@ -40,10 +39,10 @@ namespace kmint {
             drawable_.set_tint(color);
         }
 
-        void boat::repair(int amount) {
-            damage -= amount;
-            std::cout << "repair boat " << amount << std::endl;
-
+        void boat::repair(const std::shared_ptr<repair_place>& repair_place) {
+            int repair_points = repair_place->getRepairAmount();
+            damage -= repair_points;
+            std::cout << "Repair boat " << repair_points << " points, at: " << repair_place->get_name() << ", current damage points is " << damage << "\n" << std::endl;
         }
 
         void boat::get_pigs_onboard() {
@@ -52,6 +51,10 @@ namespace kmint {
                 if (piggie != nullptr)
                     piggie->get_onboard_boat();
             }
+        }
+
+        std::shared_ptr<repair_place> boat::get_repair_place() {
+            return repair_factory.getRepairPlace();
         }
 
     } // namespace pigisland

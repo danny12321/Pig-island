@@ -20,7 +20,7 @@ namespace kmint {
             bool canEatPig() override {return false;};
 
         private:
-            std::unique_ptr<repair_place> repairPlace;
+            std::shared_ptr<repair_place> repairPlace;
             std::unique_ptr<navigation> tomtom;
         };
     }

@@ -2,6 +2,7 @@
 #define KMINT_PIGISLAND_BOAT_HPP
 
 #include <kmint/pigisland/state/context.hpp>
+#include <kmint/pigisland/reapair_places/repair_place_factory.hpp>
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
@@ -26,12 +27,16 @@ namespace kmint {
 
             void setTint(graphics::color color) override;
 
-            void repair(int amount);
+            void repair(const std::shared_ptr<repair_place>& amount);
+
+            std::shared_ptr<repair_place> get_repair_place();
 
         private:
             play::image_drawable drawable_;
             int damage = 0;
             void get_pigs_onboard();
+
+            repair_place_factory repair_factory;
         };
 
     } // namespace pigisland

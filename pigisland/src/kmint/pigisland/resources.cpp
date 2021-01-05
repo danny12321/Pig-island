@@ -71,10 +71,10 @@ KWWWWWWWWWWWWWWWWWWWWWWWWLLLLLLL
             };
 
             std::array rects{
-                    math::rectangle{math::vector2d{0.1f, 2}, math::size{13, 15}},
-                    math::rectangle{math::vector2d{13.f, 0.1f}, math::size{15, 9}},
-                    math::rectangle{math::vector2d{20, 9}, math::size{12, 10}},
-                    math::rectangle{math::vector2d{6, 17}, math::size{17, 6}}
+                    math::rectangle{math::vector2d{1, 4}, math::size{13, 12}},
+                    math::rectangle{math::vector2d{12.f, 0.1f}, math::size{15, 9}},
+                    math::rectangle{math::vector2d{20, 6}, math::size{12, 10}},
+                    math::rectangle{math::vector2d{7, 17}, math::size{17, 6}}
             };
 
             auto to_index = [](int i) -> std::size_t {

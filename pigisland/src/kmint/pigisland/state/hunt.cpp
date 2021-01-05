@@ -28,7 +28,7 @@ namespace kmint {
         }
 
         map::map_node *hunt::getClosestNode(math::vector2d position) {
-            map::map_node *closestNode;
+            map::map_node *closestNode = &context->graph[0];
             float minDistance = INT16_MAX;
 
             for (auto &node : context->graph) {

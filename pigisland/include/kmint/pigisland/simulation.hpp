@@ -28,8 +28,6 @@ namespace kmint {
         private:
             play::stage &stage;
             std::vector<pig*> pigs;
-            const int pig_amount = 100;
-
         };
     }
 }

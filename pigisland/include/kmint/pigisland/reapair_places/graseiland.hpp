@@ -17,7 +17,11 @@ namespace kmint {
 
             int max_repair() override { return 100; };
 
-            int node_id() override { return 128; };
+            int node_id() override { return 128; }
+
+            std::string get_name() const override {
+                return "Graseiland";
+            };
 
         };
     }

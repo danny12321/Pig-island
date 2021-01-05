@@ -18,15 +18,22 @@ namespace kmint {
             if (context->node().node_id() == repairPlace->node_id()) {
                 auto b = dynamic_cast<boat*>(context);
                 if(b != nullptr)
-                    b->repair(repairPlace->getRepairAmount());
+                    b->repair(repairPlace);
 
                 context->setState(new wandering(context));
             }
         }
 
         go_to_repair_place::go_to_repair_place(kmint::pigisland::context *context) : state(context) {
-            repairPlace = repair_place_factory().getRepairPlace(random_int(1, 4));
-            tomtom = std::make_unique<navigation>(&context->graph, &context->node(), &context->graph[repairPlace->node_id()]);
+            auto boat = dynamic_cast<pigisland::boat *>(context);
+            if(boat != nullptr) {
+                repairPlace = boat->get_repair_place();
+                std::cout << "Boat is going to repair at " << repairPlace->get_name() << std::endl;
+                tomtom = std::make_unique<navigation>(&context->graph, &context->node(), &context->graph[repairPlace->node_id()]);
+            } else {
+                std::cout << "Only boats can go to the repair shop! Setting new state to wandering" << std::endl;
+                context->setState(new wandering(context));
+            }
         }
     }
 }

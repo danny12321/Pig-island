@@ -16,7 +16,7 @@ namespace kmint {
     namespace pigisland {
 
         simulation::simulation(play::stage &stage, kmint::pigisland::boat &boat, kmint::pigisland::shark &shark) : stage(stage) {
-            auto locs = pigisland::random_pig_locations(pig_amount);
+            auto locs = pigisland::random_pig_locations(100);
             for (auto loc : locs) {
                 factors factor{};
                 auto &pig = stage.build_actor<pigisland::pig>(loc, boat, shark, factor);
