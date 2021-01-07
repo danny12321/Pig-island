@@ -7,7 +7,7 @@
 
 namespace kmint {
     namespace pigisland {
-        math::vector2d follow_actor::getSteering() const {
+        math::vector2d follow_actor::getSteering(delta_time dt) const {
             int followActorView = 100;
 
             if (math::distance(entity.location(), actor.location()) < followActorView) {

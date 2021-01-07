@@ -46,7 +46,7 @@ namespace kmint {
                 }
 
                 a.estimatedDistance = std::sqrt(pow(target->location().x() - node.location().x(), 2) +
-                                                pow(target->location().y() - node.location().y(), 2) * 1.0) / 28;
+                                                pow(target->location().y() - node.location().y(), 2)) / 28;
 
                 path.push_back(a);
                 queue.push_back(&node);

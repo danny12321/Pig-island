@@ -8,7 +8,7 @@
 
 namespace kmint {
     namespace pigisland {
-        math::vector2d alignment_flock::getSteering() const {
+        math::vector2d alignment_flock::getSteering(delta_time dt) const {
             if (entity.num_perceived_actors() <= 0) return {0, 0};
 
             math::vector2d avgDirection{0, 0};

@@ -12,7 +12,7 @@ namespace kmint {
         class coherence_flock : public iforce {
         public:
             explicit coherence_flock(force_driven_entity& entity, const factor &force_factor) : iforce(entity, force_factor) {};
-            [[nodiscard]] math::vector2d getSteering() const override;
+            [[nodiscard]] math::vector2d getSteering(delta_time dt) const override;
         };
     }
 }

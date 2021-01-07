@@ -3,7 +3,7 @@
 
 namespace kmint {
     namespace pigisland {
-        math::vector2d coherence_flock::getSteering() const {
+        math::vector2d coherence_flock::getSteering(delta_time dt) const {
             int coherenceView = 25;
 
             // we can't see any friends

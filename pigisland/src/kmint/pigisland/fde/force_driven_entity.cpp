@@ -19,7 +19,7 @@ namespace kmint {
             math::vector2d steeringForce{0, 0};
 
             for (const auto &flock : flocks)
-                steeringForce += flock->getSteering();
+                steeringForce += flock->getSteering(dt);
 
             velocity += steeringForce;
             velocity *= maxVelocity;
@@ -37,7 +37,7 @@ namespace kmint {
         }
 
         void force_driven_entity::addWalls() {
-            factor wall_force {50};
+            factor wall_force {30};
 
             // ADD WALLS
             float width = 1024;

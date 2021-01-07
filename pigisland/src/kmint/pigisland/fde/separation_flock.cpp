@@ -7,7 +7,7 @@
 
 namespace kmint {
     namespace pigisland {
-        math::vector2d separation_flock::getSteering() const {
+        math::vector2d separation_flock::getSteering(delta_time dt) const {
             // we can't see any friends
             if (entity.num_perceived_actors() <= 0) return {0, 0};
 

@@ -12,7 +12,7 @@ namespace kmint {
         class follow_actor : public iforce {
         public:
             explicit follow_actor(force_driven_entity& entity, play::actor &actor, const factor &force_factor) : iforce(entity, force_factor), actor(actor) {};
-            [[nodiscard]] math::vector2d getSteering() const override;
+            [[nodiscard]] math::vector2d getSteering(delta_time dt) const override;
 
         private:
             play::actor &actor;

@@ -18,7 +18,7 @@ namespace kmint {
                                                                                        force_factor(force_factor) {
             }
 
-            [[nodiscard]] virtual math::vector2d getSteering() const = 0;
+            [[nodiscard]] virtual math::vector2d getSteering(delta_time dt) const = 0;
 
         protected:
             const factor force_factor;
