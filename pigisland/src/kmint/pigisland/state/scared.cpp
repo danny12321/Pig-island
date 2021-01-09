@@ -13,7 +13,7 @@ namespace kmint {
             steps++;
 
             if (steps >= walkingDistance) {
-                context->setState(new shark_wandering(context));
+                context->setState(prevState);
             }
         }
     }

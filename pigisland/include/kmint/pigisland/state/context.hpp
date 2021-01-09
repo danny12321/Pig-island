@@ -30,7 +30,6 @@ namespace kmint {
             int stepsMade = 0;
 
             bool isDone = false;
-        protected:
             state *activeState;
         };
     }

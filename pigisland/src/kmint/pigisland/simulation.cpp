@@ -18,21 +18,31 @@ namespace kmint {
         simulation::simulation(play::stage &stage, kmint::pigisland::boat &boat, kmint::pigisland::shark &shark) : stage(stage) {
             auto locs = pigisland::random_pig_locations(100);
             for (auto loc : locs) {
-                factors factor{};
+                factors factor{}; // create a random set of factors for every pig
                 auto &pig = stage.build_actor<pigisland::pig>(loc, boat, shark, factor);
                 pigs.push_back(&pig);
             }
         }
 
+        void simulation::log_result() {
+            std::cout << "Simulation result \n\nPig amount " << pigs.size() << "\n";
+
+            std::sort(pigs.begin(), pigs.end(), [](const pig *pig1, const pig *pig2) { return pig1->get_time_survived() > pig2->get_time_survived();});
+
+            std::cout << "Best pig stats: \n";
+            std::cout << "Time survived: " << pigs[0]->get_time_survived() << " seconds\n";
+            pigs[0]->get_factors().log();
+
+            std::cout << "\nWorst pig stats: \n";
+            std::cout << "Time survived: " << pigs[0 + pigs.size() -1]->get_time_survived() << " seconds\n";
+            pigs[0 + pigs.size() -1]->get_factors().log();
+
+            std::cout << std::endl;
+        }
+
         simulation::~simulation() {
             for(auto &pig : pigs)
                 stage.remove_actor(*pig);
-        }
-
-
-
-        simulation_result simulation::get_simulation_result() {
-            return simulation_result{*this};
         }
     }
 }

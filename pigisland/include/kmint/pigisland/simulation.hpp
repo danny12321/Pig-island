@@ -21,9 +21,7 @@ namespace kmint {
         public:
             simulation(play::stage &stage, kmint::pigisland::boat &boat, kmint::pigisland::shark &shark);
             ~simulation();
-
-            [[nodiscard]] simulation_result get_simulation_result();
-
+            void log_result();
 
         private:
             play::stage &stage;

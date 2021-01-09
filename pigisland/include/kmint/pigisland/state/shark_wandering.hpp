@@ -18,8 +18,6 @@ namespace kmint {
 
             bool canEatPig() override { return true; };
 
-        private:
-
         };
     }
 }

@@ -64,5 +64,7 @@ int main() {
                 });
             }
         });
+
+        sim.log_result();
     }
 }

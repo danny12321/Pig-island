@@ -36,7 +36,7 @@ add_executable(pigisland
         src/kmint/pigisland/state/go_to_repair_place.cpp
         src/kmint/pigisland/repair_places/repair_place_factory.cpp
         src/kmint/pigisland/simulation.cpp
-        src/kmint/pigisland/simulation_result.cpp)
+        src/kmint/pigisland/state/shark_hunt.cpp)
 
 target_compile_features(pigisland PUBLIC cxx_std_17)
 target_link_libraries(pigisland PRIVATE kmint)

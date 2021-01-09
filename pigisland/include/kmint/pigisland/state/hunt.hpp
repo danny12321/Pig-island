@@ -22,8 +22,10 @@ namespace kmint {
 
             bool canEatPig() override { return true; };
 
-        private:
+        protected:
             play::actor &target;
+
+        private:
             std::unique_ptr<navigation> tomtom;
 
             map::map_node *getClosestNode(math::vector2d position);

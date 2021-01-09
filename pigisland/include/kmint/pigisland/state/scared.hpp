@@ -13,6 +13,7 @@ namespace kmint {
         class scared : public wandering {
         public:
             scared(class context *context) : wandering(context) {
+                prevState = context->activeState;
                 context->setTint(graphics::colors::black);
             };
 
@@ -21,6 +22,7 @@ namespace kmint {
             bool canEatPig() override { return false; };
 
         private:
+            state* prevState;
             int steps = 0;
             const int walkingDistance = 10;
         };
