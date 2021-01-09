@@ -29,7 +29,8 @@ namespace kmint {
 
         void pig::get_onboard_boat() {
             active = false;
-            // cannot delete actor or stop de drawing so place it outside the view
+            // cannot remove actor because then the results are null or stop de drawing so place it outside the view
+//            this->remove();
             location({-500, -500});
         }
 
