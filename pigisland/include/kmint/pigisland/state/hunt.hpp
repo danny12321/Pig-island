@@ -7,6 +7,7 @@
 
 #include <kmint/pigisland/navigation.hpp>
 #include "kmint/pigisland/state/state.hpp"
+#include <kmint/pigisland/node_algorithm.hpp>
 
 namespace kmint {
     namespace pigisland {
@@ -14,8 +15,8 @@ namespace kmint {
         public:
             hunt(pigisland::context *context, play::actor &target) : state(context), target(target) {
                 context->setTint(graphics::colors::red);
-                auto targetLocation = getClosestNode(target.location());
-                tomtom = std::make_unique<navigation>(&context->graph, &context->node(), targetLocation);
+                auto &targetClosedNode = find_closest_node_to(context->graph, target.location());
+                tomtom = std::make_unique<navigation>(&context->graph, &context->node(), &context->graph[targetClosedNode.node_id()]);
             };
 
             void execute(delta_time dt) override;
@@ -27,8 +28,6 @@ namespace kmint {
 
         private:
             std::unique_ptr<navigation> tomtom;
-
-            map::map_node *getClosestNode(math::vector2d position);
         };
     }
 }

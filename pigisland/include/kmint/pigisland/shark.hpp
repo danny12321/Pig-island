@@ -34,15 +34,21 @@ namespace kmint {
 
             void setTint(graphics::color color) override;
 
-            bool at_resting_place();
 
             void reset();
+
+            void rest();
+
+            [[nodiscard]] const bool getIsDone() const {return isDone;};
 
         private:
             play::image_drawable drawable_;
 
             void eatPig();
 
+            bool isDone = false;
+
+            int stepsMade = 0;
         };
 
     } // namespace pigisland

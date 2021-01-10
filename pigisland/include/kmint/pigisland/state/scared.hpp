@@ -13,7 +13,7 @@ namespace kmint {
         class scared : public wandering {
         public:
             scared(class context *context) : wandering(context) {
-                prevState = context->activeState;
+                prevState = context->getState();
                 context->setTint(graphics::colors::black);
             };
 

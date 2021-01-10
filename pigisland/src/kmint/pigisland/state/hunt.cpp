@@ -15,10 +15,10 @@ namespace kmint {
                 return;
             }
 
-            auto targetClosedNode = getClosestNode(target.location());
+            auto &targetClosedNode = find_closest_node_to(context->graph, target.location());
 
-            if (tomtom->getTarget() != targetClosedNode) {
-                tomtom->setTarget(&context->node(), targetClosedNode);
+            if (tomtom->getTarget() != &targetClosedNode) {
+                tomtom->setTarget(&context->node(), &context->graph[targetClosedNode.node_id()]);
             }
 
             auto nextNode = tomtom->getNextNode();
@@ -27,20 +27,5 @@ namespace kmint {
             }
         }
 
-        map::map_node *hunt::getClosestNode(math::vector2d position) {
-            map::map_node *closestNode = &context->graph[0];
-            float minDistance = INT16_MAX;
-
-            for (auto &node : context->graph) {
-                auto distance = math::distance(node.location(), position);
-
-                if (distance < minDistance) {
-                    closestNode = &node;
-                    minDistance = distance;
-                }
-            }
-
-            return closestNode;
-        }
     }
 }

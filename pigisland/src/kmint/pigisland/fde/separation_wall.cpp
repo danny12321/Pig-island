@@ -8,17 +8,15 @@
 namespace kmint {
     namespace pigisland {
         math::vector2d separation_wall::getSteering(delta_time dt) const {
-            float lookingDistance = (to_seconds(dt) * 300);
+            float lookingDistance = (to_seconds(dt) * 400);
             math::vector2d steering{0, 0};
 
-//            std::cout << to_seconds(dt) << std::endl;
 
             // vertical wall check
             if (abs(point1.x() - entity.location().x()) < lookingDistance &&
                 ((entity.location().y() < point1.y() && entity.location().y() > point2.y()) ||
                  (entity.location().y() > point1.y() && entity.location().y() < point2.y()))) {
-//                steering -= {entity.location().x() - point1.x(), 0};
-//                std::cout << entity.location().x() - point1.x() << " - " << lookingDistance << std::endl;
+
                 if (entity.location().x() > point1.x()) steering += {lookingDistance, 0};
                 else steering += {-lookingDistance, 0};
             }
@@ -27,7 +25,6 @@ namespace kmint {
             if (abs(point1.y() - entity.location().y()) < lookingDistance &&
                 ((entity.location().x() < point1.x() && entity.location().x() > point2.x()) ||
                  (entity.location().x() > point1.x() && entity.location().x() < point2.x()))) {
-//                steering += {0, entity.location().y() - point1.y()};
 
                 if (entity.location().y() > point1.y()) steering += {0,lookingDistance};
                 else steering += {0, -lookingDistance};

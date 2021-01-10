@@ -2,9 +2,8 @@
 // Created by Thierry on 2-12-2020.
 //
 
-#include <kmint/pigisland/state/shark_wandering.hpp>
 #include "kmint/pigisland/state/tired.hpp"
-
+#include <kmint/pigisland/shark.hpp>
 
 namespace kmint {
     namespace pigisland {
@@ -15,8 +14,11 @@ namespace kmint {
             }
 
             if (context->node().node_id() == restingPlaceId) {
-                context->stepsMade = 0;
-                context->isDone = true;
+                auto shark = dynamic_cast<kmint::pigisland::shark*>(context);
+
+                if(shark != nullptr) {
+                    shark->rest();
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
+#include "kmint/pigisland/boat.hpp"
 #include <kmint/pigisland/state/go_to_repair_place.hpp>
 #include <kmint/pigisland/pig.hpp>
-#include "kmint/pigisland/boat.hpp"
 #include "kmint/pigisland/node_algorithm.hpp"
 #include "kmint/pigisland/resources.hpp"
 #include "kmint/pigisland/state/wandering.hpp"
@@ -18,13 +18,8 @@ namespace kmint {
             t_passed_ += dt;
             get_pigs_onboard();
 
-            float period = 1;
-
-            // if the boat is in rocks the period is 4 times longer
-            if (this->node().node_info().kind == 'R') period *= 4;
-
-            if (to_seconds(t_passed_) >= period) {
-                activeState->execute(dt);
+            if (to_seconds(t_passed_) >= waiting_time(node())) {
+                getState()->execute(dt);
 
                 if (damage < 100) {
                     ++damage;

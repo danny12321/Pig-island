@@ -6,7 +6,6 @@
 #define PIG_ISLAND_WANDERING_HPP
 
 #include "kmint/pigisland/state/state.hpp"
-//#include "kmint/pigisland/state/context.hpp"
 
 namespace kmint {
     namespace pigisland {

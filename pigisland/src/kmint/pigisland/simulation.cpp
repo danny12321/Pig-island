@@ -10,7 +10,6 @@
 #include "kmint/pigisland/node_algorithm.hpp"
 #include "kmint/pigisland/pig.hpp"
 #include "kmint/pigisland/resources.hpp"
-#include "kmint/pigisland/simulation_result.hpp"
 
 namespace kmint {
     namespace pigisland {

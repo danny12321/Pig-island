@@ -1,4 +1,3 @@
-#include <kmint/pigisland/simulation_result.hpp>
 #include <kmint/pigisland/resources.hpp>
 #include <kmint/pigisland/node_algorithm.hpp>
 #include "kmint/main.hpp" // voor de main loop
@@ -34,7 +33,7 @@ int main() {
 
         main_loop(s, window, [&](delta_time dt, loop_controls &ctl) {
 
-            if(shark.isDone) ctl.quit = true;
+            if(shark.getIsDone()) ctl.quit = true;
 
             for (ui::events::event &e : event_source) {
                 e.handle_quit([&ctl, &running](ui::events::quit_event qe) {

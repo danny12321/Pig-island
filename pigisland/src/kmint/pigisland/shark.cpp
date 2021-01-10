@@ -6,6 +6,7 @@
 #include <kmint/pigisland/state/shark_wandering.hpp>
 #include <kmint/pigisland/boat.hpp>
 #include <kmint/pigisland/pig.hpp>
+#include <kmint/pigisland/node_algorithm.hpp>
 
 namespace kmint {
     namespace pigisland {
@@ -19,14 +20,9 @@ namespace kmint {
             t_passed_ += dt;
             eatPig();
 
-            float period = 1;
-
-            // if the shark is in rocks the period is 4 times longer
-            if (this->node().node_info().kind == 'R') period *= 4;
-
-            if (to_seconds(t_passed_) >= period) {
+            if (to_seconds(t_passed_) >= waiting_time(node())) {
                 // Do state
-                activeState->execute(dt);
+                getState()->execute(dt);
                 stepsMade++;
                 t_passed_ = from_seconds(0);
 
@@ -50,7 +46,7 @@ namespace kmint {
         }
 
         void shark::eatPig() {
-            if (!activeState->canEatPig()) return;
+            if (!getState()->canEatPig()) return;
 
             for (auto it = begin_collision(); it != end_collision(); ++it) {
                 auto piggie = dynamic_cast<pig *>(it.operator->());
@@ -62,6 +58,11 @@ namespace kmint {
         void shark::reset() {
             setState(new shark_wandering(this));
             isDone = false;
+        }
+
+        void shark::rest() {
+            stepsMade = 0;
+            isDone = true;
         }
 
     } // namespace pigisland

@@ -23,13 +23,16 @@ namespace kmint {
                 activeState = newState;
             }
 
+            state* getState() {
+                return activeState;
+            }
+
             virtual void setTint(graphics::color color) = 0;
 
             delta_time t_passed_{};
             map::map_graph &graph;
-            int stepsMade = 0;
 
-            bool isDone = false;
+        private:
             state *activeState;
         };
     }
