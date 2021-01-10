@@ -37,7 +37,7 @@ namespace kmint {
         }
 
         void force_driven_entity::addWalls() {
-            factor wall_force {30};
+            factor wall_force {50};
 
             // ADD WALLS
             float width = 1024;

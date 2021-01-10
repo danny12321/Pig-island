@@ -8,7 +8,7 @@
 namespace kmint {
     namespace pigisland {
         math::vector2d separation_wall::getSteering(delta_time dt) const {
-            float lookingDistance = (to_seconds(dt) * 400);
+            float lookingDistance = 10 + (to_seconds(dt) * 500);
             math::vector2d steering{0, 0};
 
 
